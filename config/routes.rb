@@ -10,5 +10,9 @@ Rails.application.routes.draw do
 
   # adminログイン後topへ移動
   root 'admin/orders#top'
+  # admin/orderのルート設定
+   namespace :admin do
+   resources :orders, only: [:index, :show, :update]
+  end
 
 end
