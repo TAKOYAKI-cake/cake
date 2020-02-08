@@ -10,6 +10,28 @@
   </head>
 
   <body>
+    <header>
+      <h1>cake</h1>
+      <ul>
+        <% if customer_signed_in? %>
+            <li>current_customer</li>
+            <li>マイページ</li>
+            <li>カート</li>
+            <li>アバウト</li>
+            <li>
+              <%= link_to destroy_customer_session_path, method: :delete  do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_customer_session_path do %>
+                ログイン
+              <% end %>
+            </li>
+            <li>アバウト</li>
+        <% end %>
+      </ul>
     <%= yield %>
   </body>
 </html>
