@@ -55,13 +55,6 @@
     t.datetime "updated_at", null: false
   end
 
-  create_table "orderd_products", force: :cascade do |t|
-    t.integer "quantity"
-    t.integer "price"
-    t.integer "making_status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
