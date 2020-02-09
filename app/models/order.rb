@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
-  belongs_to :admin
+  has_many :orderd_products
+  belongs_to :customer
 
 end
