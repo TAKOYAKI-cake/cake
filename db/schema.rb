@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_041959) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_041959) do
     t.string "last_name"
     t.string "post_code"
     t.string "telephone_number"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.string "address"
     t.string "family_name_kana"
     t.string "last_name_kana"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_041959) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_041959) do
   create_table "orderd_products", force: :cascade do |t|
     t.integer "quantity"
     t.integer "price"
-    t.integer "making_status"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_041959) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "total_amount"
-    t.integer "order_status"
+    t.integer "order_status", default: 0
     t.string "method_of_payment"
     t.string "postcode"
     t.string "shipping_address"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_041959) do
     t.string "name"
     t.text "description"
     t.string "image_id"
-    t.integer "sales_status"
+    t.integer "sales_status", default: 0
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
