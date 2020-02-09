@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :products, only: [:show, :index, :edit, :update, :new, :create]
+  end
+
+  devise_for :admins
   devise_for :customers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # adminログイン後topへ移動
-  root 'admin/orders#top'
+
   # admin/orderのルート設定
    namespace :admin do
+    get '/orders/top'
    resources :orders, only: [:index, :show, :update]
-  end
+end
+
+
 
 end
