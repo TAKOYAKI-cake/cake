@@ -5,4 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cart_items, dependent: :destroy
+
+  enum status: { 有効: false, 退会: true }
 end
