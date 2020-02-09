@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+#customerのルーティング
+resources :addresses
+
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :products, only: [:show, :index, :edit, :update, :new, :create]
