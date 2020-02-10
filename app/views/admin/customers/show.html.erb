@@ -31,7 +31,7 @@
     </tr>
     <tr>
       <td>
-        <a class="btn btn-success btn-sm" href="/admin/customers/<%= @customer.id %>/edit">編集する</a>
+        <a><%= link_to "編集", edit_admin_customer_path(@customer) %></a>
       </td>
       <td>
         <a class="btn btn-success btn-sm" href="/admin/orders">注文履歴一覧を見る</a>
@@ -42,3 +42,4 @@
   </tbody>
 
 </table>
+
