@@ -4,12 +4,13 @@ Rails.application.routes.draw do
 
 
 root to: 'customers#top'
+get 'congfirm' => 'customers#confirm'
 #customerのルーティング
 resources :addresses
 resources :carts
 resources :products
 resources :orders
-resources :customers, only: [:show, :edit, :update, :confirm]
+resources :customers, only: [:show, :edit, :update]
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
