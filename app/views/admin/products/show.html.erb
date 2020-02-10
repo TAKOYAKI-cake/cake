@@ -1,2 +1,17 @@
+<h1>商品詳細画面</h1>
+
+    <h4>商品名</h4>
+    <%= @product.name %>
+    <h4>商品説明</h4>
+    <%= @product.description  %>
+    <h4>ジャンル</h4>
+
+    <h4>税抜価格</h4>
+    <%= @product.price %>
+
+    <h4>販売ステータス</h4>
+
+    <%= link_to '編集する', edit_admin_product_path(@product.id) %>
+
 <h1>Admin::Products#show</h1>
 <p>Find me in app/views/admin/products/show.html.erb</p>
