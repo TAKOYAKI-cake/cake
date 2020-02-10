@@ -16,6 +16,7 @@ resources :customers, only: [:show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :products, only: [:show, :index, :edit, :update, :new, :create]
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
