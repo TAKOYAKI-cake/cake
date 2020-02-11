@@ -15,7 +15,7 @@
       <th><%= customer.id %></th>
       <th><%= link_to customer.family_name, admin_customer_path(customer.id) %></th>
       <th><%= customer.email %></th>
-      <th>ステータス</th>
+      <th><%= customer.is_deleted ? '退会済み' : '有効' %></th>
     </tr>
   <% end %>
   </tbody>
