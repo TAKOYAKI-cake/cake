@@ -7,21 +7,31 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @new_product = Product.new(product_params)
-    # 1つのデータを対象にしているので@_product、単数形にしています。
-    @new_product.save
-    redirect_to admin_product_path
+    # 1つのデータを対象にしているのでインスタンス変数を単数形にしています。
+    @new_product.save!
+    redirect_to admin_product_path(@new_product.id)
   end
 
   def index
+    @products = Product.all.includes(:genre)
   end
 
   def show
-    @product = Product.find()
+    @product = Product.find(params[:id])
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to admin_product_path(@product.id)
+  end
+
+  private
+  def product_params
+  params.require(:product).permit(:name, :description, :image, :sales_status, :price, :genre_id)
   end
 end
