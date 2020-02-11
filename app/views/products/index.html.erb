@@ -1,14 +1,14 @@
 <!--サイドバー部分テンプレート-->
 <%= render 'layouts/sidegenre', genres: @genres %>
 
-<h1><%= @title %><%= @count %> </h1><!-- 商品一覧、ジャンルの商品件数-->
+<h1><%= @title %></h1>全<%= @count %>件<!-- 商品一覧、ジャンルの商品件数-->
 
 <div>
 <% @products.each do |product| %><!--商品一覧-->
   <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
     <%= attachment_image_tag product, :image %><br><!--商品画像-->
     <%= product.name %><br><!--商品名-->
-    ￥<%= product.price %><!--そのままくると税抜き、商品税込み価格にする？１０００の位に点？（登録の時にする？）-->
+    ￥<%= (@product.price * 1.08).floor %><!--商品税込み価格,小数点切り捨て-->
   <% end %>
 <% end %>
 </div>
