@@ -1,14 +1,18 @@
 <!--サイドバー部分テンプレート-->
-<h1>ケーキ（全X件）</h1><!-- 商品件数-->
+<%= render 'layouts/sidegenre', genres: @genres %>
+
+<h1><%= @title %><%= @count %> </h1><!-- 商品一覧、ジャンルの商品件数-->
+
 <div>
 <% @products.each do |product| %><!--商品一覧-->
   <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
-    <%= attachment_image_tag products, :image_id %><<br><!--商品画像-->
+    <%= attachment_image_tag product, :image %><br><!--商品画像-->
     <%= product.name %><br><!--商品名-->
-    ￥<%= product.price %><!--そのままくると税抜き、商品税込み価格にする？１０００の位に点？-->
+    ￥<%= product.price %><!--そのままくると税抜き、商品税込み価格にする？１０００の位に点？（登録の時にする？）-->
   <% end %>
 <% end %>
 </div>
-<%= paginate(@products_page) %>
+<%= paginate(@products) %>
+
 <h1>Products#index</h1>
 <p>Find me in app/views/products/index.html.erb</p>
