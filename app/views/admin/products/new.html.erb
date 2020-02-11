@@ -17,7 +17,9 @@
     <%= f.text_field :price %>
 
     <h4>販売ステータス</h4>
+    <%#<%= f.collection_select(:sales_status, Product.all, :id, :name, :prompt => "--選択して下さい--") %>
 
+    <%= f.select :sales_status, Product.sales_statuses.keys, :prompt => "--選択して下さい--" %>
 
     <%= f.submit "新規登録" %>
 

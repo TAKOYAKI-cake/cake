@@ -9,11 +9,14 @@
     <h4>商品説明</h4>
     <%= @product.description  %>
     <h4>ジャンル</h4>
+    <%= @product.genre.name %>
 
     <h4>税抜価格</h4>
     <%= @product.price %>
 
     <h4>販売ステータス</h4>
+    <%= @product.sales_status %>
 
+    <h4>
     <%= link_to '編集する', edit_admin_product_path(@product.id) %>
-
+    </h4>
