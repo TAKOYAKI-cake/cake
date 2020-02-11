@@ -13,13 +13,12 @@ class ProductsController < ApplicationController
   def genre
     @customer = current_customer#ヘッダー
     @genres = Genre.all#ジャンルサイドバー一覧
-
-    @genre = Genre.find(params[:genre_id])# Genreのデータベースのテーブルから一致するidを取得
-    @products = @genre.products.all# genre_idと紐づく投稿を取得
+    @genre = Genre.find(params[:id])# Genreのデータベースのテーブルから一致するidを取得
+    @products = @genre.products# genre_idと紐づく投稿を取得
     @count = @products.count#@productsは7行目、genre_idと紐づいたテーブル数
-    @title = genre.name #genre_id(params)がある時の一覧タイトル
+    @title = @genre.name #genre_id(params)がある時の一覧タイトル
 
-    @products = Product.page(params[:page]).reverse_order#kaminariページャ用のため、７、１１行目と同じ名前
+    @products = @products.page(params[:page]).reverse_order#kaminariページャ用のため、７、１１行目と同じ名前
   end
 
   def show#商品詳細,注文ボタン

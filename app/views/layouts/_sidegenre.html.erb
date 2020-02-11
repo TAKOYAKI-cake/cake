@@ -10,7 +10,7 @@
 	      <% genres.each do |genre| %><!--ジャンル一覧、ジャンルテーブルからとってくる-->
 	        <tr>
               <td>
-              	<%= link_to products_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
+              	<%= link_to product_genre_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
                   <%= genre.name %><!--ジャンル名-->
                 <% end %>
               </td>
