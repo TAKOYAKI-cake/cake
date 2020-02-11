@@ -24,8 +24,7 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.is_deleted = true
     @customer.save
-    @current_customer = nil
-    redirect_to root_path
+    redirect_to destroy_customer_session_path
   end
   private
   def customer_params
