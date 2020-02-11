@@ -15,6 +15,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all.includes(:genre)
+    @products = Product.page(params[:page])
   end
 
   def show
