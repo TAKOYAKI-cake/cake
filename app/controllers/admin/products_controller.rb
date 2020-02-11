@@ -13,7 +13,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @products = Product.all.includes(:genre)
   end
 
   def show
@@ -21,13 +21,17 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to admin_product_path(@product.id)
   end
 
   private
   def product_params
-  params.require(:product).permit(:name, :description, :image_id, :sales_status, :price)
+  params.require(:product).permit(:name, :description, :image, :sales_status, :price, :genre_id)
   end
 end
