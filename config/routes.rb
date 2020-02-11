@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
 root to: 'customers#top'
 get 'congfirm' => 'customers#confirm'
-post "logout" => "customers#logout"
 #customerのルーティング
 resources :addresses
 resources :carts

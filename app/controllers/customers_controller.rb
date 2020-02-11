@@ -22,9 +22,9 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.is_deleted = true
-    @customer.save
-    redirect_to logout_path
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   def logout
