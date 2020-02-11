@@ -8,5 +8,9 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
 
+	def active_for_authentication?
+    	super && (self.is_deleted == false)
+  	end
+
   enum status: { 有効: false, 退会: true }
 end
