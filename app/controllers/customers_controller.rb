@@ -24,8 +24,14 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.is_deleted = true
     @customer.save
-    redirect_to destroy_customer_session_path
+    redirect_to logout_path
   end
+
+  def logout
+    session[:customer_id] = nil
+    redirect_to root_path
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:family_name,:last_name,:family_name_kana,:last_name_kana,:post_code,:post_code,:telephone_number,:is_deleted)
