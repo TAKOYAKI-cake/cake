@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,26 +13,26 @@
       <h1>cake</h1>
       <ul>
         <% if customer_signed_in? %>
-        <li><%= @customer.family_name %><%= @customer.last_name %></li>
-        <li>
-          <%= link_to customer_path(@customer) do %>
-          マイページ
-          <% end %>
-        </li>
-        <li>カート</li>
-        <li>アバウト</li>
-        <li>
-          <%= link_to destroy_customer_session_path, method: :delete  do %>
-          ログアウト
-          <% end %>
-        </li>
-        <% else %>
-        <li>
-          <%= link_to new_customer_session_path do %>
-          ログイン
-          <% end %>
-        </li>
-        <li>アバウト</li>
+            <li><%= @customer.family_name %> <%= @customer.last_name %></li>
+            <li>
+              <%= link_to customer_path(@customer) do %>
+              マイページ
+              <% end %>
+            </li>
+            <li>カート</li>
+            <li>アバウト</li>
+            <li>
+              <%= link_to destroy_customer_session_path, method: :delete  do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_customer_session_path do %>
+                ログイン
+              <% end %>
+            </li>
+            <li>アバウト</li>
         <% end %>
       </ul>
       <%= yield %>
