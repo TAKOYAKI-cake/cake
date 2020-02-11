@@ -22,11 +22,16 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    @customer.is_deleted = true
-    @customer.save
-    @current_customer = nil
+    @customer.update(is_deleted: true)
+    reset_session
     redirect_to root_path
   end
+
+  def logout
+    session[:customer_id] = nil
+    redirect_to root_path
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:family_name,:last_name,:family_name_kana,:last_name_kana,:post_code,:post_code,:telephone_number,:is_deleted)
