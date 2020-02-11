@@ -10,7 +10,7 @@ resources :addresses
 resources :carts
 resources :products
 resources :orders
-resources :customers, only: [:show, :edit, :update]
+resources :customers, only: [:show, :edit, :update, :destroy]
 
   namespace :admin do
     resources :products, only: [:show, :index, :edit, :update, :new, :create]
