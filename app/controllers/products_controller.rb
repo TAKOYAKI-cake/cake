@@ -20,14 +20,15 @@ class ProductsController < ApplicationController
 
     @products = @products.page(params[:page]).reverse_order#kaminariページャ用のため、７、１１行目と同じ名前
   end
+  def new
+  end
 
   def show#商品詳細,注文ボタン
     @customer = current_customer#ヘッダー
     @genres = Genre.all#ジャンルサイドバー一覧
-    @product = Product.find(params[:id])#商品のレコードのid取得
-  end
 
-  def new
+    @product = Product.find(params[:id])#商品のレコードのid取得
+    @carts = CartItem.new#新規投稿
   end
 
   def edit
