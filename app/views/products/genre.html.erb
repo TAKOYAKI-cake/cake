@@ -1,4 +1,3 @@
-<!--サイドバー部分テンプレート-->
 <%= render 'layouts/sidegenre', genres: @genres %>
 
 <h1><%= @title %>全<%= @count %>件</h1><!-- 商品一覧、ジャンルの商品件数-->
@@ -8,11 +7,8 @@
   <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
     <%= attachment_image_tag product, :image %><br><!--商品画像-->
     <%= product.name %><br><!--商品名-->
-    ￥<%= (@product.price * 1.08).floor %><!--商品税込み価格,小数点切り捨て-->
+    ￥<%= (product.price * 1.08).floor %><!--商品税込み価格,小数点切り捨て-->
   <% end %>
 <% end %>
 </div>
 <%= paginate(@products) %>
-
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>

@@ -26,6 +26,13 @@
                 ログアウト
               <% end %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li><%= link_to "商品一覧" , admin_products_path %></li>
+            <li><%= link_to "会員一覧" , admin_customers_path %></li>
+            <li><%= link_to "注文履歴一覧" , admin_orders_path %></li>
+            <li><%= link_to "ジャンル管理" , admin_genres_path %></li>
+            <li><%= link_to destroy_admin_session_path, method: :delete  do %>ログアウト</li>
+            <% end %>
           <% else %>
             <li>
               <%= link_to new_customer_session_path do %>

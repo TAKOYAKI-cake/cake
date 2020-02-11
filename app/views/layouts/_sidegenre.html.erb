@@ -1,0 +1,21 @@
+<!--ジャンル部分テンプレート -->
+<div>
+  <table>
+	  <thead>
+		  <tr>
+		  	<th>ジャンル検索</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+	      <% genres.each do |genre| %><!--ジャンル一覧、ジャンルテーブルからとってくる-->
+	        <tr>
+              <td>
+              	<%= link_to product_genre_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
+                  <%= genre.name %><!--ジャンル名-->
+                <% end %>
+              </td>
+		    </tr>
+		  <% end %>
+	  </tbody>
+  </table>
+</div>

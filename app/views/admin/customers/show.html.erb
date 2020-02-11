@@ -4,6 +4,7 @@
     <tr>
       <td>顧客ID</td>
       <th><%= @customer.id %></th>
+      <th><%= @customer.is_deleted ? '退会済み' : '有効' %></th>
     </tr>
     <tr>
       <td>氏名</td>
@@ -42,4 +43,3 @@
   </tbody>
 
 </table>
-
