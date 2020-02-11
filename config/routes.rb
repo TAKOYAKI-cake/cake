@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
 
 root to: 'customers#top'
+get '/products_genre/:id' => 'products#genre',as:'product_genre'
 get 'congfirm' => 'customers#confirm'
 #customerのルーティング
 resources :addresses

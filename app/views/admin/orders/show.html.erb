@@ -3,15 +3,20 @@
   <tbody>
     <tr>
       <td>購入者</td>
+      <th><%= @customer.family_name %>　<%= @customer.last_name %></th>
     </tr>
     <tr>
       <td>配送先</td>
+      <th><%= @order.shipping_address %><br>
+        <%= @order.shipping_name %></th>
     </tr>
     <tr>
       <td>支払方法</td>
+      <th><%= @order.method_of_payment %></th>
     </tr>
     <tr>
       <td>注文ステータス</td>
+      <th><%= order.order_status %></th>
     </tr>
   </tbody>
 </table>
@@ -27,8 +32,15 @@
     </tr>
   </thead>
   <tbody>
+ <% @order.orderd_products.each do |orderd_products| %>
     <tr>
+      <th><%= orderd_product.product_name %></th>
+      <th><%= orderd_product.price %></th>
+      <th><%= orderd_product.quantity %></th>
+      <th>小計</th>
+      <th><%= orderd_product.making_status %></th>
     </tr>
+  <% end %>
   </tbody>
 </table>
 

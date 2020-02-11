@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin!
 
   def new
     @new_product = Product.new
@@ -14,6 +15,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all.includes(:genre)
+    @products = Product.page(params[:page])
   end
 
   def show
