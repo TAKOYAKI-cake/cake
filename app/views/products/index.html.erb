@@ -1,7 +1,7 @@
 <!--サイドバー部分テンプレート-->
 <%= render 'layouts/sidegenre', genres: @genres %>
 
-<h1><%= @title %></h1>全<%= @count %>件<!-- 商品一覧、ジャンルの商品件数-->
+<h1><%= @title %>全<%= @count %>件</h1><!-- 商品一覧、ジャンルの商品件数-->
 
 <div>
 <% @products.each do |product| %><!--商品一覧-->
