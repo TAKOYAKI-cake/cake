@@ -12,9 +12,17 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_out_path_for(resource)
-        case resource
-        when Admin
-            new_admin_session_path
+        # case resourceはログアウト時には使えない
+        # case resource
+        # when Admin
+        #     admin_orders_top_path
+        # when Customer
+        #     root_path
+        # end
+        if resource == :admin
+          admin_orders_top_path
+        else
+          root_path
         end
     end
 
