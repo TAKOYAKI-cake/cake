@@ -7,8 +7,9 @@
   ￥<%= (@product.price * 1.08).floor %>（税込）<!--商品税込み価格,小数点切り捨て-->
 
   <%= form_for @carts, url: "/carts" do |f| %><!--カートへ送るフォーム、createアクション-->
-　　<!--商品の情報追加のため,f.hidden_field使用,入れるさき（パラメータ）はcartの:product_idカラム,value(送る中身)をproductのidに設定-->
-    <% f.hidden_field :product_id,value: @product.id %>
+<!--商品の情報追加のため,f.hidden_field使用,入れるさき（パラメータ）はcartの:product_idカラム,value(送る中身)をproductのidに設定-->
+    <%= @product.id %>
+    <%= f.hidden_field :product_id, value: @product.id %>
     <!--個数選択プルダウン２０まで,cart_itemsテーブルのquantityに保存-->
     <%= f.select :quantity, [[1,"1"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"6"],[7,"7"],[8,"8"],[9,"9"],[10,"10"],[11,"11"],[12,"12"],[13,"13"],[14,"14"],[15,"15"],[16,"16"],[17,"17"],[18,"18"],[19,"19"],[20,"20"]] %>
     <%= f.submit "カートに入れる" %><!--カートに入れるリンク-->
