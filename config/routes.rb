@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 root to: 'customers#top'
 get '/products_genre/:id' => 'products#genre',as:'product_genre'
 get 'congfirm' => 'customers#confirm'
+get 'orders/thanks' => 'orders#thanks'
 #customerのルーティング
 resources :addresses
 resources :carts
 resources :products
+get '/orders/:id/congfirm' => 'orders#confirm', as:'orders/congfirm'
 resources :orders
 resources :customers, only: [:show, :edit, :update, :destroy]
 

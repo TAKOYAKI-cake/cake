@@ -1,0 +1,20 @@
+<p>注文情報確認</p>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  <tr>
+    <th>@cart_items.product_id</th>
+    <th>@crat_items.product_id.price*1.1</th>
+    <th>@cart_items.quantity</th>
+    <th>@crat_items.product_id.price * 1.1 * @cart_items.quantity</th>
+  </tr>
+</table>
+<p>支払い方法</p>
+<p>@orders.method_of_payment</p>
+<p>お届け先</p>
+<P>@order.postcode @prder.shipping_address<br>
+@order.shipping_name</P>
