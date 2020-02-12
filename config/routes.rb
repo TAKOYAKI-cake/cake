@@ -10,6 +10,7 @@ get 'congfirm' => 'customers#confirm'
 resources :addresses
 resources :carts
 resources :products
+get '/orders/:id/congfirm' => 'orders#confirm', as:'orders/congfirm'
 resources :orders
 resources :customers, only: [:show, :edit, :update, :destroy]
 
