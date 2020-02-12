@@ -39,3 +39,5 @@ private
   	params.require(:address).permit(:post_code, :shipping_address, :shipping_name)
   end
 
+end
+
