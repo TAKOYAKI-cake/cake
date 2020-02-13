@@ -1,17 +1,22 @@
 <h1>購入情報入力</h1>
 
-<%= form_for(@order) do |f| %>
+<%= form_for(@order, url: confirm_new_order_path) do |f| %>
 <h3>支払入力</h3>
-<label><%=f.radio_button :method_of_payment, "card"%>クレジットカード</label><br>
-<label><%=f.radio_button :method_of_payment, "bank"%>銀行振込</label>
+<label><%= f.radio_button :method_of_payment, "card" %>クレジットカード</label><br>
+<label><%= f.radio_button :method_of_payment, "bank" %>銀行振込</label>
 
 <h3>お届け先</h3>
-<label><%=f.radio_button :shipping_address, @customer.address %>ご自身の住所<label><br>
-    <%= @customer.post_code %><%= @customer.address %><br>
-    <%= @customer.family_name %><%= @customer.last_name %><br>
-    <label><%=f.radio_button :shipping_address, :"bank"%>登録済住所から選択<label><br>
-        <%= f.collection_select(:shipping_address, Address.all, :id, :name_address) %><br>
-        <label><%=f.radio_button :shipping_address, :"bank"%>新しいお届け先<label><br>
-            <%= f.submit "確認画面に進む" %>
 
-            <% end %>
+
+<label><%= f.radio_button :shipping_address, @customer.address %>ご自身の住所</label><br>
+<%= @customer.post_code %><%= @customer.address %><br>
+<%= @customer.family_name %><%= @customer.last_name %><br>
+
+
+<label><%= f.radio_button :shipping_address, :shipping_address %>登録済住所から選択<br>
+ <%= f.collection_select(:shipping_address, Address.all, :name_address, :name_address ) %></label><br>
+
+ <label><%= f.radio_button :shipping_address, :shipping_address %>新しいお届け先</label><br>
+ <%= f.submit "確認画面に進む" %>
+
+ <% end %>
