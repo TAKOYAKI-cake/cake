@@ -29,10 +29,6 @@ class ProductsController < ApplicationController
     @genres = Genre.all#ジャンルサイドバー一覧
     @product = Product.find(params[:id])#商品のレコードのid取得
     @carts = CartItem.new#新規投稿
-    if @current_customer == nil
-     flash[:notice] = "ログインをして下さい"#ログインを促す
-     redirect_to customer_session_path#カスタマーのsign_in画面へ
-     end
   end
 
   def edit
