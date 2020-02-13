@@ -4,6 +4,11 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
   end
+  
+  def index
+    @customer = current_customer
+    @orders = Order.all
+  end
 
   def create
     @order = current_customer.orders.new(order_params)
@@ -25,14 +30,15 @@ class OrdersController < ApplicationController
 
   end
 
-  def index
-
-  end
-
   def show
+    @customer = current_customer
   end
 
   def edit
+  end
+
+  def thanks
+    @customer = current_customer
   end
 
   private
