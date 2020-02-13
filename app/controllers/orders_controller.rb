@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
 
   def new
+    @customer = current_customer
     @order = Order.new
   end
   
@@ -32,6 +33,7 @@ class OrdersController < ApplicationController
 
   def show
     @customer = current_customer
+    @order = Order.find(params[:id])
   end
 
   def edit
