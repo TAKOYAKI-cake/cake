@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 root to: 'customers#top'
 get '/products_genre/:id' => 'products#genre',as:'product_genre'
 get 'congfirm' => 'customers#confirm'
+get 'orders/thanks' => 'orders#thanks'
 delete "/cart" => "carts#destroy_all",as:"carts_destroy_all"
 #customerのルーティング
 resources :addresses
