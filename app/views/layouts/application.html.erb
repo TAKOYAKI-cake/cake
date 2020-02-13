@@ -10,7 +10,9 @@
 
   <body>
     <header>
-      <h1>cake</h1>
+       <%=link_to root_path do %>
+       <%= image_tag 'logo.png' %>
+       <% end %>
       <ul>
         <% if customer_signed_in? %>
             <li><%= @customer.family_name %> <%= @customer.last_name %></li>
