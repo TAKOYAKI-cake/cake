@@ -1,15 +1,20 @@
-<h1>TOP</h1>
-<%= render 'layouts/sidegenre', genres: @genres %>
-
-<h1><%= @title %>全<%= @count %>件</h1><!-- 商品一覧、ジャンルの商品件数-->
-
-<div>
-<% @products.each do |product| %><!--商品一覧-->
-  <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
-    <%= attachment_image_tag product, :image %><br><!--商品画像-->
-    <%= product.name %><br><!--商品名-->
-    ￥<%= (product.price * 1.08).floor %><!--商品税込み価格,小数点切り捨て-->
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+      <div class="col-xs-3">
+      <%= render 'layouts/sidegenre', genres: @genres %>
+      </div>
+       <div class="col-xs-9">
+        <p><h2><%= @title %>全<%= @count %>件</h2><!-- 商品一覧、ジャンルの商品件数-->
+        <div>
+          <% @products.each do |product| %><!--商品一覧-->
+            <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
+              <%= attachment_image_tag product, :image,size: "300x200" %><br><!--商品画像-->
+              <%= product.name %><br><!--商品名-->
+              ￥<%= (product.price * 1.08).floor %><br><!--商品税込み価格,小数点切り捨て-->
+            <% end %>
+          <% end %>
+      </div>
+       <%= paginate(@products) %>
+  </div>
+  </div>
 </div>
-<%= paginate(@products) %>
