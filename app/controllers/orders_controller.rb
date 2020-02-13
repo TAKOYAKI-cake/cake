@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   
   def index
     @customer = current_customer
+    @orders = Order.all
   end
 
   def create
@@ -27,9 +28,14 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @customer = current_customer
   end
 
   def edit
+  end
+
+  def thanks
+    @customer = current_customer
   end
 
   private

@@ -41,5 +41,8 @@
 	<% end %>
 </div>
 <div>
-	<p>注文履歴</p><p>一覧を見る</p>
+	<p>注文履歴</p>
+	<%= link_to orders_path(@customer) do %>
+	一覧を見る
+	<% end %>
 </div>
