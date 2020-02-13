@@ -1,4 +1,5 @@
 <p>会員の方はこちらからログイン</p>
+<p><%= flash[:notice] %></p><!--赤文字-->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :メールアドレス %>
