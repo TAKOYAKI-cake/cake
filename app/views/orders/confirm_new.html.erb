@@ -1,11 +1,22 @@
 <h1>注文情報確認</h1>
 
-  <%= form_for(@order) do |f| %>
-  <h3>支払方法</h3>
-      <%= @order.method_of_payment %>
-      <%= f.hidden_field :method_of_payment, value: @order.method_of_payment %>
-  <h3>お届け先</h3>
-      <%= @order.shipping_address %>
-      <%= f.hidden_field :shipping_address, value: @order.shipping_address %><br>
-  <%= f.submit "購入を確定する" %>
+<%= form_for(@order) do |f| %>
+<h3>支払方法</h3>
+<%= @order.method_of_payment %>
+
+<h3>お届け先</h3>
+<%= @order.shipping_address %>
+<br>
+
+<!-- サイト上に見えない形でorder情報を送る -->
+<%= f.hidden_field :total_amount, value: 100 %>
+<%= f.hidden_field :order_status, value: @order.order_status %>
+<%= f.hidden_field :method_of_payment, value: @order.method_of_payment %>
+<%= f.hidden_field :postcode, value: @order.postcode %>
+<%= f.hidden_field :shipping_address, value: @order.shipping_address %>
+<%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+<%= f.hidden_field :postage, value: 100 %>
+
+<%= f.submit "購入を確定する" %>
+
 <% end %>
