@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+before_action :authenticate_customer!, only: [:index, :update, :destroy, :destroy_all]#ログインしていない人をログイン画面へ
   def index
   	@customer = current_customer#ヘッダー
   	@cart_items =CartItem.all#cart_itemsテーブルから全て取り出す
@@ -28,10 +29,15 @@ class CartsController < ApplicationController
   end
 #カートに商品を入れる
   def create
-  	@cart = CartItem.new(cart_params)#新規投稿
-    @cart.customer_id = current_customer.id
-    @cart.save#保存
-    redirect_to carts_path#カート内一覧
+    if current_customer != nil
+  	   @cart = CartItem.new(cart_params)#新規投稿
+       @cart.customer_id = current_customer.id
+       @cart.save#保存
+       redirect_to carts_path#カート内一覧
+    else
+     flash[:notice] = "ログインをして下さい"#ログインを促す
+     redirect_to customer_session_path#カスタマーのsign_in画面へ
+     end
   end
 
 private
