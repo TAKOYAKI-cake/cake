@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-
+before_action :authenticate_customer!#ログインしていない人をログイン画面へ
   def create
   	address = Address.new(address_params)#真祈投稿用空
   	address.customer_id = current_customer.id#user_idは、コメントしたユーザのID、currentでログインしているユーザー
