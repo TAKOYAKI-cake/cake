@@ -15,3 +15,7 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+body,header {
+  font-size: 16px;
+}

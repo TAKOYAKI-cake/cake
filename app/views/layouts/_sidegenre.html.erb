@@ -1,21 +1,13 @@
 <!--ジャンル部分テンプレート -->
-<div class="table table-striped">
-  <table>
-	  <thead>
-		  <tr>
+<div class="panel panel-default">
+		  	<div class="panel-heading">
 		  	<th>ジャンル検索</th>
-		  </tr>
-	  </thead>
-	  <tbody>
+		  </div>
+	  <div class="panel-body">
 	      <% genres.each do |genre| %><!--ジャンル一覧、ジャンルテーブルからとってくる-->
-	        <tr>
-              <td>
               	<%= link_to product_genre_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
                   <%= genre.name %><!--ジャンル名-->
-                <% end %>
-              </td>
-		    </tr>
+                <% end %><br>
 		  <% end %>
-	  </tbody>
-  </table>
+	</div>
 </div>
