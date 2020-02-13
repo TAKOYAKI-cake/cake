@@ -18,13 +18,16 @@ class OrdersController < ApplicationController
 
   def confirm_new
     @customer = current_customer
-    @order = current_customer.orders.new(order_params)
-    render :new unless @order.valid?
-    if params[:shipping_address] == ""
-      shipping_address = current_customer.shipping_address
-    else
-      shipping_address = params[:shipping_address]
+    @order = @customer.orders.new(order_params)
+
+    if @order.shipping_address == ""
+      @order.shipping_address = @customer.address
     end
+
+    @address = Address.all
+
+    render :new unless @order.valid?
+
   end
 
   def show
@@ -44,4 +47,3 @@ class OrdersController < ApplicationController
   end
 
 end
-
