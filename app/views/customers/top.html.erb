@@ -4,13 +4,13 @@
       <%= render 'layouts/sidegenre', genres: @genres %>
       </div>
        <div class="col-xs-10">
-        <p><h2><%= @title %>全<%= @count %>件</h2><!-- 商品一覧、ジャンルの商品件数-->
+        <p><h2><%= @title %><span style="font-size:0.7em;">全<%= @count %>件</span></h2><!-- 商品一覧、ジャンルの商品件数-->
         <div class="row">
           <% @products.each do |product| %><!--商品一覧-->
           <div class="col-xs-3">
             <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
               <%= attachment_image_tag product, :image,size: "220x170" %><br><!--商品画像-->
-              <%= product.name %><br><!--商品名-->
+              	<%= product.name %><br>
               ￥<%= (product.price * 1.08).floor %><br><!--商品税込み価格,小数点切り捨て-->
             <% end %>
            </div>
