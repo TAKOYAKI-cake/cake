@@ -13,20 +13,16 @@
        <%=link_to root_path do %>
        <%= image_tag 'logo.png' %>
        <% end %>
-      <ul>
+      <ul class="navbar-nav navbar-right">
         <% if customer_signed_in? %>
-            <li><%= @customer.family_name %> <%= @customer.last_name %></li>
-            <li>
-              <%= link_to customer_path(@customer) do %>
-              マイページ
-              <% end %>
+            <li class= "btn btn-info"><%= @customer.family_name %> <%= @customer.last_name %></li>
+            <li  class= "btn btn-info">
+              <%= link_to "マイページ", customer_path(@customer) %>
             </li>
-            <li>カート</li>
-            <li>アバウト</li>
-            <li>
-              <%= link_to destroy_customer_session_path, method: :delete  do %>
-                ログアウト
-              <% end %>
+            <li class= "btn btn-info">カート</li>
+            <li class= "btn btn-info">アバウト</li>
+            <li class= "btn btn-danger">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
             </li>
           <% elsif admin_signed_in? %>
             <li><%= link_to "商品一覧" , admin_products_path %></li>
