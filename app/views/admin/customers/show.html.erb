@@ -1,45 +1,58 @@
-<h1>会員詳細画面</h1>
-<table>
-  <tbody>
-    <tr>
-      <td>顧客ID</td>
-      <th><%= @customer.id %></th>
-      <th><%= @customer.is_deleted ? '退会済み' : '有効' %></th>
-    </tr>
-    <tr>
-      <td>氏名</td>
-      <th><%= @customer.family_name %>　<%= @customer.last_name %></th>
-    </tr>
-    <tr>
-      <td>フリガナ</td>
-      <th><%= @customer.family_name_kana %>　<%= @customer.last_name_kana %></th>
-    </tr>
-    <tr>
-      <td>郵便番号</td>
-      <th><%= @customer.post_code %></th>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <th><%= @customer.address %></th>
-    </tr>
-    <tr>
-      <td>電話番号</td>
-      <th><%= @customer.telephone_number %></th>
-    </tr>
-    <tr>
-      <td>メールアドレス</td>
-      <th><%= @customer.email %></th>
-    </tr>
-    <tr>
-      <td>
-        <a><%= link_to "編集", edit_admin_customer_path(@customer) %></a>
-      </td>
-      <td>
-        <a class="btn btn-success btn-sm" href="/admin/orders">注文履歴一覧を見る</a>
-      </td>
-    </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 p-6">
+    <h3>会員詳細画面</h3>
+    <table class="table table-noborder">
+      <tbody>
+        <tr>
+          <th>顧客ID</th>
+          <td>
+            <%= @customer.id %>
+            <!--%= @customer.is_deleted ? '退会済み' : '有効' %-->
+            <% if @customer.is_deleted? %>
+              <span class="btn btn-info">退会済み</span>
+            <% else %>
+              <span class="btn btn-info">有効</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @customer.family_name %>　<%= @customer.last_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @customer.family_name_kana %>　<%= @customer.last_name_kana %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customer.post_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td>
+            <a><%= link_to "編集", edit_admin_customer_path(@customer),class: "btn btn-info" %></a>
+          </td>
+          <td>
+            <a class="btn btn-success btn-sm" href="/admin/orders">注文履歴一覧を見る</a>
+          </td>
+        </tr>
 
 
-  </tbody>
+      </tbody>
 
-</table>
+    </table>
+    </div>
+  </div>
+</div>
