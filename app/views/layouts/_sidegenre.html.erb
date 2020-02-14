@@ -1,12 +1,12 @@
 <!--ジャンル部分テンプレート -->
-<div class="panel panel-default">
+<div class="panel panel-default panel-warning">
 		  	<div class="panel-heading">
 		  	<th>ジャンル検索</th>
 		  </div>
 	  <div class="panel-body">
 	      <% genres.each do |genre| %><!--ジャンル一覧、ジャンルテーブルからとってくる-->
-              	<%= link_to product_genre_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
-                  <%= genre.name %><!--ジャンル名-->
+              	<span style="font-size:1.1em;"><%= link_to product_genre_path(genre.id) do %><!-- 投稿一覧リンク（ジャンルidに紐づいてる）-->
+                  <%= genre.name %></span><!--ジャンル名-->
                 <% end %><br>
 		  <% end %>
 	</div>
