@@ -1,3 +1,13 @@
 // Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.table {
+  // margin: 10px;でもいいけど、上下左右指定になってスキマが開きすぎる感じになる。
+  margin: 30px 0;
+}
+.margin-0 {
+	margin: 0;
+}
+.w-50 {
+  height: 50% !important;
+}

@@ -10,6 +10,7 @@
 
   <body>
     <header>
+      <div class="navbar mt-4 p-6">
        <%=link_to root_path do %>
        <%= image_tag 'logo.png' %>
        <% end %>
@@ -40,6 +41,7 @@
             <li>アバウト</li>
         <% end %>
       </ul>
+      </div>
     </header>
     <%= yield %>
   </body>
