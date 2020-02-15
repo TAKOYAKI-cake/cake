@@ -1,12 +1,17 @@
-<p>本当に退会しますか？</p>
-<p>退会すると、会員登録情報や<br>
-これまでの購入履歴が閲覧できなくなります。<br>
-退会する場合は、「退会する」をクリックしてください。</p>
+<div class="container">
+	<div class="row">
+		<div class="taikai col-xs-5 col-xs-offset-3 text-center">
+			<br>
+			<br>
+			<br>
+		<p class="font-weight-bold"><span style="font-size:1.6em;">本当に退会しますか？</span></p>
+		<p>退会すると、会員登録情報や<br>
+			これまでの購入履歴が閲覧できなくなります。<br>
+		退会する場合は、「退会する」をクリックしてください。</p><br>
 
-<%= link_to customer_path(@customer.id),method: :delete do %>
-	退会する
-<% end %>
 
-<%= link_to customer_path(@customer) do %>
-	退会しない
-<% end %>
+		<%=link_to "退会しない", customer_path(@customer),class: "btn btn-info" %>
+		<%=link_to "退会する", customer_path(@customer.id),method: :delete,class: "btn btn-danger" %>
+		</div>
+	</div>
+</div>
