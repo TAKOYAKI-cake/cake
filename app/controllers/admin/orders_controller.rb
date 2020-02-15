@@ -6,6 +6,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def index
+    @customers = Customer.all
     @orders = Order.page(params[:page])
   end
 
