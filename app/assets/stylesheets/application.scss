@@ -22,3 +22,18 @@ body,header {
 .flex {
 	display: flex;
 }
+
+.btn {
+    border: 0 none;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin:20px 2.5px;
+    .link_line{
+	text-decoration: none;
+		color: #FFFFFF;
+	}
+}
+
+ul {
+  list-style: none;
+}
