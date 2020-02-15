@@ -1,32 +1,33 @@
 <div class="container">
   <div class="row">
-    <p>会員の方はこちらからログイン</p>
+    <p class="col-xs-6 col-xs-offset-2">会員の方はこちらからログイン</p>
     <p><%= flash[:notice] %></p><!--赤文字-->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <table class="table table-bordered">
+    <table class="col-xs-9 col-xs-offset-3">
       <tr>
-        <th>
+        <th class="col-xs-2">
           <%= f.label :メールアドレス %>
         </th>
         <td>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"col-xs-9"%>
         </td>
       </tr>
       <tr>
-        <th>
+        <th class="col-xs-2">
           <%= f.label :パスワード %>
         </th>
         <td>
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, autocomplete: "current-password",class:"col-xs-9" %>
         </td>
       </tr>
     </table>
-
-    <div class="actions">
+  </div>
+  <div class="row">
+    <div class="col-xs-7 col-xs-offset-4" class="actions">
       <%= f.submit "ログイン" %>
+      <%= render "customers/shared/links" %>
+      <% end %>
     </div>
-    <% end %>
-
-    <%= render "customers/shared/links" %>
   </div>
 </div>
+
