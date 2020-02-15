@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <div class="container">
   <div class="row">
     <div class="col-xs-10 p-6">
@@ -16,8 +15,8 @@
           <% @orders.each do |order| %>
           <tr>
             <th><%= link_to order.created_at, admin_order_path(order.id) %></th>
-            <th><%= customer.family_name %><%= customer.last_name %></th>
-            <th><%= orderd_products.quantity %></th>
+            <th><%= order.customer.family_name %><%= order.customer.last_name %></th>
+            <th></th>
             <th><%= order.order_status %></th>
           </tr>
           <% end %>
@@ -27,27 +26,3 @@
   </div>
   <%= paginate @orders, class: "paginate" %>
 </div>
-=======
-<h1>注文一覧画面</h1>
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
- <tbody>
-  <% @orders.each do |order| %>
-    <tr>
-      <th><%= link_to order.created_at, admin_order_path(order.id) %></th>
-      <th><%= order.customer.family_name %><%= order.customer.last_name %></th>
-      <th><%# order.orderd_products.quantity %></th>
-      <th><%= order.order_status %></th>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= paginate @orders, class: "paginate" %>
->>>>>>> Stashed changes
