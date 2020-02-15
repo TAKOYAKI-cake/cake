@@ -37,7 +37,7 @@
 					<th class="warning">住所</th>
 					<td>
 						<div class="field">
-							<%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+							<%= f.text_field :address, autofocus: true, autocomplete: "address",:size => "60*30" %>
 						</div>
 					</td>
 				</tr>
@@ -55,7 +55,7 @@
 					<th class="warning">メールアドレス</th>
 					<td>
 						<div class="field">
-							<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+							<%= f.email_field :email, autofocus: true, autocomplete: "email",:size => "50*30" %>
 						</div>
 					</td>
 				</tr>
