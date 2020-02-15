@@ -1,4 +1,8 @@
 <h1>注文情報確認</h1>
+<% @carts.each do |cart| %>
+<%= cart.product.name %>
+
+<% end %>
 
 <%= form_for(@order) do |f| %>
 <h3>支払方法</h3>
