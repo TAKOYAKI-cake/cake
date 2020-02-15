@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
     #ジャンルサイドバー一覧
 
     @products = Product.where(sales_status: 0).page(params[:page]).reverse_order#productテーブルから全て取り出す,kaminari
-    @count = Product.count#product内全件の数
+    @count = Product.where(sales_status: 0).count#product内全件の数
     @title = "商品一覧"#genre_id(params)がない時の一覧タイトル
 
     #@products = Product.page(params[:page]).reverse_order#kaminariページャ用のため同じ名前
