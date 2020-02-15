@@ -10,9 +10,7 @@ before_action :authenticate_customer!#ログインしていない人をログイ
   def index
   	@address = Address.new #新規登録用
   	@addresses = Address.all #一覧
-  	@address.customer_id = current_customer.id#誰のカスタマーidをとるのか定義
   	@customer = current_customer#ヘッダー
-  	@customer = current_customer #ヘッダー
   end
 
   def edit

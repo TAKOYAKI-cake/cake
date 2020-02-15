@@ -33,7 +33,7 @@
       <table class="table table-bordered">
        <tr class="warning"><th>郵便番号</th><th>住所</th><th>宛名</th><th></th></tr><!--見出し-->
        <tr>
-        <% @addresses.each do |address| %>
+        <% @customer.addresses.each do |address| %>
         <td><%= address.post_code %></td><!--郵便番号-->
         <td><%= address.shipping_address %></td><!--住所-->
         <td><%= address.shipping_name %></td><!--住所-->
