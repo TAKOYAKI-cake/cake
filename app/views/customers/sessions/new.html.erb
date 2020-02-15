@@ -1,32 +1,39 @@
 <div class="container">
   <div class="row">
-    <p class="col-xs-6 col-xs-offset-2">会員の方はこちらからログイン</p>
-    <p><%= flash[:notice] %></p><!--赤文字-->
+    <p class="col-xs-12 col-xs-offset-2">会員の方はこちらからログイン</p><!--赤文字-->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <table class="col-xs-9 col-xs-offset-3">
-      <tr>
-        <th class="col-xs-2">
-          <%= f.label :メールアドレス %>
-        </th>
-        <td>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"col-xs-9"%>
-        </td>
-      </tr>
-      <tr>
-        <th class="col-xs-2">
-          <%= f.label :パスワード %>
-        </th>
-        <td>
-          <%= f.password_field :password, autocomplete: "current-password",class:"col-xs-9" %>
-        </td>
-      </tr>
+    <div class="col-xs-12 col-xs-offset-3">
+      <table>
+        <tr>
+          <th class="col-xs-3">
+            <%= f.label :メールアドレス %>
+          </th>
+          <td>
+            <div class="field">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"col-xs-12"%>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><br></th>
+        </tr>
+        <tr>
+          <th class="col-xs-3">
+            <%= f.label :パスワード %>
+          </th>
+          <td>
+            <%= f.password_field :password, autocomplete: "current-password",class:"col-xs-12" %>
+          </td>
+        </tr>
     </table>
-  </div>
-  <div class="row">
-    <div class="col-xs-7 col-xs-offset-4" class="actions">
-      <%= f.submit "ログイン" %>
-      <%= render "customers/shared/links" %>
-      <% end %>
+    <br>
+    </div>
+    <div class="row">
+      <div class="col-xs-7 col-xs-offset-4" class="actions">
+        <%= f.submit "ログイン",class:"btn btn-info" %>
+        <%= render "customers/shared/links" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
