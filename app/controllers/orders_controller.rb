@@ -9,6 +9,12 @@ class OrdersController < ApplicationController
   def index
     @customer = current_customer
       @orders = Order.all
+      #@total_amount = 0
+      #@Orders.orderd_products.each do |product|
+      # @total_amount += product.product_price
+      #end
+      #@orderd_product = OrderdProduct.all
+      #@total_amount = @orderd_product.product_price.sum(:product_price)
   end
 
   def create
@@ -23,9 +29,9 @@ class OrdersController < ApplicationController
       orderd_product.price = c.product.price
       orderd_product.order_id = @order.id
       orderd_product.save!
-      # binding.pry
-    end
+      end
     @carts.destroy_all
+    # binding.pry
     redirect_to orders_thanks_path
   end
 
@@ -39,6 +45,8 @@ class OrdersController < ApplicationController
     end
 
     @address = Address.all
+    @order_postage = 800
+
 
     render :new unless @order.valid?
 
@@ -47,6 +55,8 @@ class OrdersController < ApplicationController
   def show
     @customer = current_customer
     @order = Order.find(params[:id])
+    @order_postage = 800
+    @orderd_product = @order.orderd_products
   end
 
   def edit

@@ -1,11 +1,25 @@
 <h1>注文情報確認</h1>
 
-<% @carts.each do |cart| %>
-  <%= cart.product.name %>
-  <%= cart.product.price %>
-  <%= cart.quantity %>
-  <%= attachment_image_tag cart.product, :image %>
-<% end %>
+<table>
+		<tr>
+			<th colspan="2">商品名</th>
+			<th>数量</th>
+			<th>単価(税込)</th>
+			<th>小計</th>
+		</tr>
+	<tbody>
+		<% @carts.each do |cart| %>
+		<tr>
+			<td><%= attachment_image_tag cart.product, :image,size: "100x70" %></td>
+			<td><%= cart.product.name %></td>
+			<td><%= cart.quantity %></td>
+			<td><%= cart.product.price %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
 
 <%= form_for(@order) do |f| %>
 <h3>支払方法</h3>
@@ -16,13 +30,13 @@
 <br>
 
 <!-- サイト上に見えない形でorder情報を送る -->
-<%= f.hidden_field :total_amount, value: 100 %>
+<%= f.hidden_field :total_amount, value: @order.total_amount %>
 <%= f.hidden_field :order_status, value: @order.order_status %>
 <%= f.hidden_field :method_of_payment, value: @order.method_of_payment %>
 <%= f.hidden_field :postcode, value: @order.postcode %>
 <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
 <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
-<%= f.hidden_field :postage, value: 100 %>
+<%= f.hidden_field :postage, value: @order_postage %>
 
 <%= f.submit "購入を確定する" %>
 
