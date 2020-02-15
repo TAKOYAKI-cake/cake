@@ -27,13 +27,20 @@ body,header {
     border: 0 none;
     font-weight: 700;
     text-transform: uppercase;
-    margin:20px 2.5px;
+    margin:0px 2.5px;
     .link_line{
-	text-decoration: none;
-		color: #FFFFFF;
-	}
+          text-decoration: none;
+		      color: #FFFFFF;
+    }
 }
 
 ul {
+  padding-top:20px;
+  padding-bottom:20px;
   list-style: none;
+}
+
+.link{
+  margin:5px;
+  color: #000000;
 }
