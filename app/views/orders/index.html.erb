@@ -16,7 +16,7 @@
       <%= order.shipping_address %><br>
       <%= order.shipping_name %>
     </td>
-    <td></td>
+    <td><%= order.orderd_product.name %></td>
     <td><%= order.total_amount %></td>
     <td><%= order.order_status %></td>
     <td><%= link_to order_path(order) do %>
@@ -25,4 +25,4 @@
     </td>
   </tr>
  <% end %>
-</table>
+ </table>

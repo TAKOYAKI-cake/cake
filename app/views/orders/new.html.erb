@@ -14,10 +14,11 @@
 
 
 <label><%= f.radio_button :shipping_address, :shipping_address %>登録済住所から選択<br>
- <%= f.collection_select(:shipping_address, Address.all, :name_address, :name_address, :prompt => "--選択して下さい--" ) %></label><br>
+ <%= f.collection_select(:shipping_address, Address.all, :shipping_address, :name_address, :prompt => "--選択して下さい--" ) %></label><br>
 
  <label><%= f.radio_button :shipping_address, :shipping_address %>新しいお届け先</label><br>
 
  <%= f.submit "確認画面に進む" %>
 
  <% end %>
+ 

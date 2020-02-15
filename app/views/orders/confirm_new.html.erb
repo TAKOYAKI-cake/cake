@@ -1,5 +1,12 @@
 <h1>注文情報確認</h1>
 
+<% @carts.each do |cart| %>
+  <%= cart.product.name %>
+  <%= cart.product.price %>
+  <%= cart.quantity %>
+  <%= attachment_image_tag cart.product, :image %>
+<% end %>
+
 <%= form_for(@order) do |f| %>
 <h3>支払方法</h3>
 <%= @order.method_of_payment %>
