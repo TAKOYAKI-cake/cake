@@ -1,13 +1,14 @@
 class CustomersController < ApplicationController
   def top
     @customer = current_customer#ヘッダー
-    @genres = Genre.all#ジャンルサイドバー一覧
+    @genres = Genre.where(is_active: true)
+    #ジャンルサイドバー一覧
 
-    @products = Product.all#productテーブルから全て取り出す
+    @products = Product.where(sales_status: 0).page(params[:page]).reverse_order#productテーブルから全て取り出す,kaminari
     @count = Product.count#product内全件の数
     @title = "商品一覧"#genre_id(params)がない時の一覧タイトル
 
-    @products = Product.page(params[:page]).reverse_order#kaminariページャ用のため同じ名前
+    #@products = Product.page(params[:page]).reverse_order#kaminariページャ用のため同じ名前
   end
 
   def show
