@@ -3,9 +3,13 @@ class ProductsController < ApplicationController
   	@customer = current_customer#ヘッダー
     @genres = Genre.where(is_active: true)
 #ジャンルサイドバー一覧
+    genres = []
+    @genres.each do |genre|
+     genres << genre.id
+    end#ジャンルのidを[]に入れておく、下の行でそれを使う
 
-    @products = Product.where(sales_status: 0).page(params[:page]).reverse_order#productテーブルから全て取り出す,kaminari#productテーブルから有効なものを全て取り出す
-    @count = Product.where(sales_status: 0).count#product内全件の数
+    @products = Product.where(sales_status: 0,genre_id: genres).page(params[:page]).reverse_order#productテーブルから全て取り出す,kaminari#productテーブルから有効なものを全て取り出す
+    @count = Product.where(sales_status: 0,genre_id: genres).count#product内全件の数
     @title = "商品一覧"#genre_id(params)がない時の一覧タイトル
 
   end
