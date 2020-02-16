@@ -9,13 +9,7 @@ class OrdersController < ApplicationController
 
   def index
     @customer = current_customer
-      @orders = Order.all
-      #@total_amount = 0
-      #@Orders.orderd_products.each do |product|
-      # @total_amount += product.product_price
-      #end
-      #@orderd_product = OrderdProduct.all
-      #@total_amount = @orderd_product.product_price.sum(:product_price)
+    @orders = Order.all
   end
 
   def create

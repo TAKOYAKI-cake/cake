@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                     <% array = [] %><!--空の配列を用意-->
-                    <% @cart_items.each do |cart_item| %>
+                    <% @customer.cart_items.each do |cart_item| %>
                     <tr>
                         <td><!--商品名-->
                             <%= attachment_image_tag cart_item.product, :image,:fill, 100, 50 %>
