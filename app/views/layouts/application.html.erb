@@ -39,6 +39,9 @@
             <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li>
             <% end %>
             <% else %>
+            <%=link_to root_path do %>
+            <%= image_tag 'logo.png' %>
+            <% end %>
             <li class= "btn btn-info">
               <%= link_to "ログイン", new_customer_session_path,class: "link_line" %>
             </li>

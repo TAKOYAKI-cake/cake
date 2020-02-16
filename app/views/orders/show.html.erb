@@ -1,6 +1,6 @@
 <p>注文履歴詳細</p>
-<table>
-	<p>注文情報</p>
+<h4>注文情報</h4>
+	<table>
 	<tr>
 		<th>注文日</th>
 		<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -23,15 +23,19 @@
 	</tr>
 </table>
 
+<h4>請求情報</h4>
 <table>
-	<p>請求情報</p>
 	<tr>
-		<th>商品合計</th>
-		<tb></tb>
+	<th>配送料</th>
+	<td><%= @order_postage %></td>
 	</tr>
+	<% @sum = 0 %>
+	<% @orderd_products.each do |o_product| %>
 	<tr>
-		<th>配送料></th>
-		<td><%= @order_postage %></td>
+        <% @sum += o_product.product.price * o_product.quantity %>
+		<% end %><br>
+        <th>商品合計</th>
+		<td><%= @sum %></td>
 	</tr>
 	<tr>
 		<th>ご請求金額</th>
@@ -39,19 +43,20 @@
 	</tr>
 </table>
 
+<h4>注文内容</h4>
 <table>
-	<p>注文内容</p>
+		<% @orderd_products.each do |o_product| %>
 	<tr>
 		<th>商品</th>
 		<th>単価(税込)</th>
 		<th>個数</th>
 		<th>小計</th>
 	</tr>
-	<% @orderd_product.each do |o_product| %>
 	<tr>
 		<td><%= o_product.product.name %></td>
 		<td><%= o_product.product.price %></td>
-		<td><%= o_product.quantity %></td>
+		<td><%= o_product.quantity%></td>
+		<td><%= o_product.product.price * o_product.quantity %></td>
 	<% end %>
 	</tr>
 </table>

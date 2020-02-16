@@ -10,20 +10,34 @@ class OrdersController < ApplicationController
   def index
     @customer = current_customer
     @orders = Order.all
+
   end
 
   def create
     @order = current_customer.orders.new(order_params)
+    @carts = CartItem.all
+    @order_postage = 800
+    @sum = 0
+      @carts.each do |c|
+        price = c.product.price
+        qty = c.quantity
+        @sum +=  (price * 1.08) * qty
+        #binding.pry
+      end
+    @total_amount = @sum + @order_postage
+    #@total_amount =
+    #binding.pry
+    @order.attributes = {total_amount: @total_amount}
     @order.save
     @carts = current_customer.cart_items
-    @carts.each do |c|
+      @carts.each do |c|
       orderd_product = OrderdProduct.new
       # orderd_productに必要なカラムを入れる
-      orderd_product.product_id = c.product_id
-      orderd_product.quantity = c.quantity
-      orderd_product.price = c.product.price
-      orderd_product.order_id = @order.id
-      orderd_product.save!
+        orderd_product.product_id = c.product_id
+        orderd_product.quantity = c.quantity
+        orderd_product.price = c.product.price
+        orderd_product.order_id = @order.id
+        orderd_product.save!
       end
     @carts.destroy_all
     # binding.pry
@@ -65,7 +79,9 @@ class OrdersController < ApplicationController
 
    end
 
+
    @order_postage = 800
+   #binding.pry
    render :new unless @order.valid?
    end
 
@@ -73,27 +89,29 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.find(params[:id])
     @order_postage = 800
-    @orderd_product = @order.orderd_products
+    @orderd_products = @order.orderd_products
+    @item = OrderdProduct.all
+    #@orderd_product = OrderdProduct.sum(:price)
   end
 
 
 
-def edit
-end
+  def edit
+  end
 
-def thanks
-  @customer = current_customer
-end
+  def thanks
+    @customer = current_customer
+  end
 
-private
+  private
 
-def order_params
-  params.require(:order).permit(:user_id, :total_amount, :order_status, :method_of_payment, :postcode, :shipping_address, :shipping_name, :postage, orderd_products_attributes: [:price])
-end
+  def order_params
+    params.require(:order).permit(:user_id, :total_amount, :order_status, :method_of_payment, :postcode, :shipping_address, :shipping_name, :postage, orderd_products_attributes: [:price])
+  end
 
-def address_params
-  params.require(:address).permit(:customer_id, :post_code, :shipping_address, :shipping_name)
-end
+  def address_params
+    params.require(:address).permit(:customer_id, :post_code, :shipping_address, :shipping_name)
+  end
 
   # def orderd_product_params
   #   params.require(:orderd_product).permit(:quantity, :price, :making_status, :order_id, :product_id)
