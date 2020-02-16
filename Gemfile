@@ -69,4 +69,5 @@ gem "refile-mini_magick"
 gem 'kaminari'
 gem 'payjp'
 
+
 gem 'pry-byebug'

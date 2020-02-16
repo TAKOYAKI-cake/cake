@@ -1,13 +1,17 @@
 class AddressesController < ApplicationController
 before_action :authenticate_customer!#ログインしていない人をログイン画面へ
-  def create
-  	address = Address.new(address_params)#真祈投稿用空
-  	address.customer_id = current_customer.id#user_idは、コメントしたユーザのID、currentでログインしているユーザー
-    address.save! #DBへ保存（保存できているか確認のため！つけてます）
+def create
+  	@address = Address.new(address_params)#真祈投稿用空
+  	@address.customer_id = current_customer.id#user_idは、コメントしたユーザのID、currentでログインしているユーザー
+    @customer = current_customer
+    if @address.save #DBへ保存（保存できているか確認のため！つけてます）
     redirect_to "/addresses"# 配送先一覧・登録へリダイレクト
+  else
+    render action: :index
   end
+end
 
-  def index
+def index
   	@address = Address.new #新規登録用
   	@addresses = Address.all #一覧
   	@customer = current_customer#ヘッダー
@@ -31,11 +35,10 @@ before_action :authenticate_customer!#ログインしていない人をログイ
     redirect_to addresses_path# 配送先一覧・登録へリダイレクト
   end
 
-private
+  private
 
   def address_params#create,update用ストロングパラメーター
   	params.require(:address).permit(:post_code, :shipping_address, :shipping_name)
   end
 
 end
-
