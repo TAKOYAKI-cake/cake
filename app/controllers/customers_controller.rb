@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
   end
 
   def edit
-    @customer = current_customer#customerのidを取得
+    @customer = Customer.find(params[:id])#customerのidを取得
   end
   def update
     @customer = Customer.find(params[:id])
@@ -42,6 +42,6 @@ class CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:family_name,:last_name,:family_name_kana,:last_name_kana,:post_code,:post_code,:telephone_number,:is_deleted)
+    params.require(:customer).permit(:family_name,:last_name,:family_name_kana,:last_name_kana,:post_code,:address,:telephone_number,:is_deleted)
   end
 end
