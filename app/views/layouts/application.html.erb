@@ -38,10 +38,12 @@
             <li><%= link_to "ジャンル管理" , admin_genres_path,class: "link" %></li>
             <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li>
             <% end %>
+          </ul>
             <% else %>
             <%=link_to root_path do %>
             <%= image_tag 'logo.png' %>
             <% end %>
+          <ul class="navbar-nav navbar-right">
             <li class= "btn btn-info">
               <%= link_to "ログイン", new_customer_session_path,class: "link_line" %>
             </li>
