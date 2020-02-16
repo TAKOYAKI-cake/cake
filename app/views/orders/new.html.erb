@@ -1,29 +1,37 @@
-<h1>購入情報入力</h1>
+<div class="container">
+	<div class="row">
+		<h4>購入情報入力</h4>
 
-<%= form_for(@order, url: confirm_new_order_path) do |f| %>
-<h3>支払入力</h3>
-<label><%= f.radio_button :method_of_payment, "card" %>クレジットカード</label><br>
-<label><%= f.radio_button :method_of_payment, "bank" %>銀行振込</label>
+		<%= form_for(@order, url: confirm_new_order_path) do |f| %>
+		<span style="font-weight: bold">支払入力</span><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><%= f.radio_button :method_of_payment, "card" %>クレジットカード</label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><%= f.radio_button :method_of_payment, "bank" %>銀行振込</label><br>
 
-<h3>お届け先</h3>
+		<span style="font-weight: bold">お届け先</span><br>
 
-<label><%= radio_button_tag :select_shipping_address, "1" %>ご自身の住所</label><br>
-<%= current_customer.post_code %><%= current_customer.address %><br>
-<%= current_customer.family_name %><%= current_customer.last_name %><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1" %>ご自身の住所</label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.post_code %><%= current_customer.address %><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.family_name %><%= current_customer.last_name %><br>
 
-<label><%= radio_button_tag :select_shipping_address, "2" %>登録済住所から選択<br>
-<%= f.select :shipping_address, @customer.addresses.collect { |p| [ p.name_address, p.shipping_address ] }, :prompt => "住所を選択" %></label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "2" %>登録済住所から選択<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.select :shipping_address, @customer.addresses.collect { |p| [ p.name_address, p.shipping_address ] }, :prompt => "住所を選択" %></label><br>
 
- <label>
-  <%= radio_button_tag :select_shipping_address, "3" %>新しいお届け先<br>
-  <%= f.fields_for @address do |a| %>
- 郵便番号　<%= a.text_field :post_code %><br>
- 住所　　　<%= a.text_field :shipping_address %><br>
- 宛名　　　<%= a.text_field :shipping_name %>
+			<label>
+				&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag :select_shipping_address, "3" %>新しいお届け先<br>
+				<%= f.fields_for @address do |a| %>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;郵便番号　<%= a.text_field :post_code %><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住所　　　<%= a.text_field :shipping_address,:size => "60*30" %><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宛名　　　<%= a.text_field :shipping_name %>
 
- <% end %>
-</label>
+				<% end %>
+			</label>
+		</div>
+		<div class="row">
+			<div class="col-xs-5 col-xs-offset-5">
 
- <br><%= f.submit "確認画面に進む" %>
+				<br><%= f.submit "確認画面に進む",class:"btn btn-info" %>
 
- <% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
