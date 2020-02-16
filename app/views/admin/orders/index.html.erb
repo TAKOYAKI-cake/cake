@@ -16,8 +16,8 @@
           <tr>
             <td><%= link_to order.created_at.strftime("%Y年%m月%d日%H時%M分%S秒 "), admin_order_path(order.id) %></td>
             <td><%= order.customer.family_name %><%= order.customer.last_name %></td>
-            <%# @orderd_product.each do |o| %>
-            <td><%# o.quantity %></td>
+　　　　　　　　  <td><%= @total_quatity %>
+               </td>
             <td><%= order.order_status %></td>
           </tr>
           <% end %>
