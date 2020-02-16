@@ -27,12 +27,7 @@ class OrdersController < ApplicationController
       end
     @carts.destroy_all
     # binding.pry
-    @address = current_customer.addresses.new
-    @address.shipping_address = @order.shipping_address
-    @address.post_code = @order.postcode
-    @address.shipping_name = @order.shipping_name
 
-    @address.save
     redirect_to orders_thanks_path
 
   end
@@ -61,8 +56,15 @@ class OrdersController < ApplicationController
      @order.shipping_address = @address[:shipping_address]
      @order.postcode = @address[:post_code]
      @order.shipping_name = @address[:shipping_name]
+
+     @address = current_customer.addresses.new
+     @address.shipping_address = @order.shipping_address
+     @address.post_code = @order.postcode
+     @address.shipping_name = @order.shipping_name
+     @address.save
+
    end
-   
+
    @order_postage = 800
    render :new unless @order.valid?
    end
