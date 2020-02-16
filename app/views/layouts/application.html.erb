@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ながのCAKE</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>ながのCAKE</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <header>
-      <div class="navbar mt-4 p-6">
-        <div class="container relative">
-         <%=link_to root_path do %>
-         <%= image_tag 'logo.png' %>
-         <% end %>
-            <ul class="navbar-nav navbar-right">
-            <% if customer_signed_in? %>
-                <li class= "btn btn-info"><%= @customer.family_name %> <%= @customer.last_name %></li>
-                <li class= "btn btn-info">
-                  <%= link_to "マイページ", customer_path(@customer),class: "link_line" %>
-                </li>
-                <li class= "btn btn-info"><%= link_to "カート", carts_path(@customer),class: "link_line" %></li>
-                <li class= "btn btn-info">アバウト</li>
-                <li class= "btn btn-warning">
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "link_line" %>
-                </li>
-              <% elsif admin_signed_in? %>
-                <li><%= link_to "商品一覧" , admin_products_path,class: "link" %></li>
-                <li><%= link_to "会員一覧" , admin_customers_path,class: "link" %></li>
-                <li><%= link_to "注文履歴一覧" , admin_orders_path,class: "link" %></li>
-                <li><%= link_to "ジャンル管理" , admin_genres_path,class: "link" %></li>
-                <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li>
-                <% end %>
-              <% else %>
-                <li class= "btn btn-info">
-                  <%= link_to "ログイン", new_customer_session_path,class: "link_line" %>
-                </li>
-                <li class= "btn btn-info">アバウト</li>
+<body>
+  <header>
+    <div class="navbar mt-4 p-6">
+      <div class="container relative">
+        <% if customer_signed_in? %>
+        <%=link_to root_path do %>
+        <%= image_tag 'logo.png' %>
+        <% end %>
+        <ul class="navbar-nav navbar-right">
+
+          <li class= "btn btn-info"><%= @customer.family_name %> <%= @customer.last_name %></li>
+          <li class= "btn btn-info">
+            <%= link_to "マイページ", customer_path(@customer),class: "link_line" %>
+          </li>
+          <li class= "btn btn-info"><%= link_to "カート", carts_path(@customer),class: "link_line" %></li>
+          <li class= "btn btn-info">アバウト</li>
+          <li class= "btn btn-warning">
+            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "link_line" %>
+          </li>
+          <% elsif admin_signed_in? %>
+          <%=link_to admin_orders_top_path do %>
+          <%= image_tag 'logo.png' %>
+          <% end %>
+          <ul class="navbar-nav navbar-right">
+            <li><%= link_to "商品一覧" , admin_products_path,class: "link" %></li>
+            <li><%= link_to "会員一覧" , admin_customers_path,class: "link" %></li>
+            <li><%= link_to "注文履歴一覧" , admin_orders_path,class: "link" %></li>
+            <li><%= link_to "ジャンル管理" , admin_genres_path,class: "link" %></li>
+            <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li>
+            <% end %>
+            <% else %>
+            <li class= "btn btn-info">
+              <%= link_to "ログイン", new_customer_session_path,class: "link_line" %>
+            </li>
+            <li class= "btn btn-info">アバウト</li>
             <% end %>
           </ul>
         </div>
@@ -45,4 +50,4 @@
     </header>
     <%= yield %>
   </body>
-</html>
+  </html>

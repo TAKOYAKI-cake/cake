@@ -30,7 +30,7 @@
 <%= @order.method_of_payment %>
 
 <h3>お届け先</h3>
-<%= @order.shipping_address %>
+<%= @order.postcode %><%= @order.shipping_address %><%= @order.shipping_name %>
 <br>
 
 <!-- サイト上に見えない形でorder情報を送る -->
