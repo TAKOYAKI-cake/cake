@@ -25,7 +25,8 @@ class ProductsController < ApplicationController
 
   def show#商品詳細,注文ボタン
     @customer = current_customer#ヘッダー
-    @genres = Genre.all#ジャンルサイドバー一覧
+    @genres = Genre.where(is_active: true)
+
     @product = Product.find(params[:id])#商品のレコードのid取得
     @carts = CartItem.new#新規投稿
   end
