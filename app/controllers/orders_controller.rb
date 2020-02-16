@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
     @order = @customer.orders.new(order_params)
     @carts = current_customer.cart_items
 
-    @carts = CartItem.all
     @address = params[:order][:address]
 
     if params[:select_shipping_address] == "1"
