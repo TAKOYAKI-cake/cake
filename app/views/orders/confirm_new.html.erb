@@ -2,63 +2,70 @@
 	<div class="row">
 		<h3>注文情報確認</h3>
 		<% @carts.each do |cart| %>
-		<%= cart.product.name %>
-
+		<% cart.product.name %>
 		<% end %>
 
-		<table>
-			<thead>
+		<div class="col-xs-8">
+			<table class="table table-bordered">
+				<thead>
+					<tr class="warning">
+						<th>商品名</th>
+						<th>数量</th>
+						<th>単価(税込)</th>
+						<th>小計</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @carts.each do |cart| %>
+					<tr>
+						<td><%= attachment_image_tag cart.product, :image,size: "120x80" %></td>
+						<td><%= cart.product.name %></td>
+						<td><%= cart.quantity %></td>
+						<td><%= (cart.product.price * 1.08).floor %></td>
+						<td><%= ((cart.product.price * 1.08) * cart.quantity).floor %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-xs-4">
+			<table class="cell table table-bordered">
 				<tr>
-					<th colspan="2">商品名</th>
-					<th>数量</th>
-					<th>単価(税込)</th>
-					<th>小計</th>
+					<th class="warning">配送料</th>
+					<td><%= @order_postage %></td>
 				</tr>
-			</thead>
-			<tbody>
+				<% @sum = 0 %>
 				<% @carts.each do |cart| %>
 				<tr>
-					<td><%= attachment_image_tag cart.product, :image,size: "100x70" %></td>
-					<td><%= cart.product.name %></td>
-					<td><%= cart.quantity %></td>
-					<td><%= (cart.product.price * 1.08).floor %></td>
-					<td><%= ((cart.product.price * 1.08) * cart.quantity).floor %></td>
+					<%#<th>商品合計</th> %>
+					<%# @sum += o_product.price %>
+					<% @sum += ((cart.product.price * 1.08) * cart.quantity).floor %>
+
+					<% end %><br>
+					<th class="warning">商品合計</th>
+					<td><%= @sum %></td>
 				</tr>
-				<% end %>
-			</tbody>
-		</table>
+				<tr>
+					<th class="warning">ご請求金額</th>
+					<% @total_amount = @sum + @order_postage %>
+					<td><%= (@total_amount).floor %></td>
+					<%# binding.pry %>
+				</tr>
+			</table>
+		</div>
+	</div>
 
+	<%= form_for(@order) do |f| %>
+	<p>
+		<span style="font-size: 20px";>支払方法</span>
+		<span style="font-size: 16px";>&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.method_of_payment %></span></p>
 
-		<table>
-			<tr>
-				<th>配送料</th>
-				<td><%= @order_postage %></td>
-			</tr>
-			<% @sum = 0 %>
-			<% @carts.each do |cart| %>
-			<tr>
-				<%#<th>商品合計</th> %>
-				<%# @sum += o_product.price %>
-				<% @sum += ((cart.product.price * 1.08) * cart.quantity).floor %>
-
-				<% end %><br>
-				<th>商品合計</th>
-				<td><%= @sum %></td>
-			</tr>
-			<tr>
-				<th>ご請求金額</th>
-				<% @total_amount = @sum + @order_postage %>
-				<td><%= (@total_amount).floor %></td>
-				<%# binding.pry %>
-			</tr>
-		</table>
-
-		<%= form_for(@order) do |f| %>
-		<h3>支払方法</h3>
-		<%= @order.method_of_payment %>
-
-		<h3>お届け先</h3>
-		<%= @order.postcode %><%= @order.shipping_address %><%= @order.shipping_name %>
+		<p><span style="font-size: 20px";>お届け先</span>
+			<span style="font-size: 14px";>&nbsp;&nbsp;&nbsp;<%= @order.postcode %></span>
+			<span style="font-size: 16px";>&nbsp;&nbsp;<%= @order.shipping_address %>&nbsp;&nbsp;<%= @order.shipping_name %></span>
+		</p>
 		<br>
 
 		<!-- サイト上に見えない形でorder情報を送る -->
@@ -72,7 +79,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-5 col-xs-offset-5">
-			<%= f.submit "購入を確定する",class:"btn btn-info" %>
+			<%= f.submit "購入を確定する",class:"btn btn-info btn-lg" %>
 
 			<% end %>
 		</div>
