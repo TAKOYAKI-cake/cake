@@ -17,13 +17,37 @@
 			<td><%= attachment_image_tag cart.product, :image,size: "100x70" %></td>
 			<td><%= cart.product.name %></td>
 			<td><%= cart.quantity %></td>
-			<td><%= cart.product.price %></td>
+			<td><%= (cart.product.price * 1.08).floor %></td>
+			<td><%= ((cart.product.price * 1.08) * cart.quantity).floor %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
 
+<table>
+	<tr>
+	<th>配送料</th>
+	<td><%= @order_postage %></td>
+	</tr>
+	<% @sum = 0 %>
+	<% @carts.each do |cart| %>
+	<tr>
+		<%#<th>商品合計</th> %>
+		<%# @sum += o_product.price %>
+        <% @sum += ((cart.product.price * 1.08) * cart.quantity).floor %>
+
+		<% end %><br>
+        <th>商品合計</th>
+		<td><%= @sum %></td>
+	</tr>
+	<tr>
+		<th>ご請求金額</th>
+		<% @total_amount = @sum + @order_postage %>
+		<td><%= (@total_amount).floor %></td>
+		<%# binding.pry %>
+	</tr>
+</table>
 
 <%= form_for(@order) do |f| %>
 <h3>支払方法</h3>

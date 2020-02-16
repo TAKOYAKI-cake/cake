@@ -8,10 +8,14 @@ class Admin::OrdersController < ApplicationController
   def index
     @customers = Customer.all
     @orders = Order.page(params[:page])
+    #@order = Order.find(params[:id])
+    #@order = Order.all
+    @orderd_product = @order.orderd_products
   end
 
   def show
     @order = Order.find(params[:id])
+    @orderd_products = @order.orderd_products
   end
 
   def update
