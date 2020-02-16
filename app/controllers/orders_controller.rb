@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    @carts = CartItem.all
+    @carts = current_customer.cart_items
     @order_postage = 800
     @sum = 0
       @carts.each do |c|
