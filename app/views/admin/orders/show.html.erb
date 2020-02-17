@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <th>配送先</th>
-            <td><%= @order.shipping_address %><br>
+            <td>〒<%= @order.postcode %> <%= @order.shipping_address %><br>
               <%= @order.shipping_name %></td>
             </tr>
             <tr>
@@ -50,9 +50,9 @@
              <% @order.orderd_products.each do |orderd_products| %>
              <tr>
               <th><%= orderd_products.product.name %></th>
-              <th><%= (orderd_products.price * 1.08).floor %></th>
+              <th><%= (orderd_products.price * 1.08).floor.to_s(:delimited, delimiter: ',') %></th>
               <th><%= orderd_products.quantity %></th>
-              <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor %></th>
+              <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor.to_s(:delimited, delimiter: ',') %></th>
               <%= form_for orderd_products, :url => {:controller => :orderd_products, :action => :update } do |item| %>
               <th><%= item.select :making_status, OrderdProduct.making_statuses.keys %></th>
               <th><%= item.submit "更新",class: "btn btn-info" %></th>
@@ -71,7 +71,7 @@
             <tr>
               <% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
               <% end %><br><th>商品合計</th>
-              <td><%= (@sum).floor %>円</td>
+              <td><%= (@sum).floor.to_s(:delimited, delimiter: ',') %>円</td>
             </tr>
             <tr>
               <th>送料</th>
@@ -79,7 +79,7 @@
             </tr>
             <tr>
               <th>請求金額合計</th>
-              <th><%= @order.total_amount %>円</th>
+              <th><%= @order.total_amount.to_s(:delimited, delimiter: ',') %>円</th>
             </tr>
 
           </tbody>

@@ -12,7 +12,7 @@
                 <p class="product-description"><%= @product.description %></p>
             </div>
             <h4><span style="font-size:0.9em;">ジャンル</span>&nbsp;&nbsp;<%= @product.genre.name %></h4>
-            <h4><span style="font-size:0.9em;">税抜価格</span>&nbsp;&nbsp;<%= @product.price %> (<%= (@product.price * 1.08).floor %>)</h4><br>
+            <h4><span style="font-size:0.9em;">税込価格（税抜価格）</span>&nbsp;&nbsp;<%= (@product.price * 1.08).floor.to_s(:delimited, delimiter: ',') %> (<%= @product.price.to_s(:delimited, delimiter: ',') %>)　円</h4><br>
 
             <h4><span style="font-size:0.9em;">販売ステータス</span>&nbsp;&nbsp;<%= @product.sales_status %></h4><br>
         </div>

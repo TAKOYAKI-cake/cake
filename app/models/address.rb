@@ -8,7 +8,7 @@ class Address < ApplicationRecord
   validates :shipping_name, presence: true
 
   def name_address
-    post_code + shipping_address + shipping_name
+    '〒' + post_code.to_s.insert(3, "-") + ' ' +shipping_address + ' ' + shipping_name
   end
 
 end
