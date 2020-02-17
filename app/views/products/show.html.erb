@@ -13,7 +13,7 @@
         <div class="col-xs-4">
           <h2><%= @product.name %><br></h2><!--商品名-->
            <%= @product.description %><br><!--商品説明-->
-           <span style="font-size:1.4em;">￥<%= (@product.price * 1.08).floor %>（税込）</span><!--商品税込み価格,小数点切り捨て-->
+           <span style="font-size:1.4em;">￥<%= (@product.price * 1.08).floor.to_s(:delimited, delimiter: ',') %>（税込）</span><!--商品税込み価格,小数点切り捨て-->
 
        <%= form_for @carts, url: "/carts" do |f| %><!--カートへ送るフォーム、createアクション-->
        <!--商品の情報追加のため,f.hidden_field使用,入れるさき（パラメータ）はcartの:product_idカラム,value(送る中身)をproductのidに設定-->

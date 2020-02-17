@@ -20,7 +20,7 @@
                             <%= attachment_image_tag cart_item.product, :image,:fill, 100, 50 %>
                             <%= cart_item.product.name %>
                         </td>
-                        <td><%= (cart_item.product.price * 1.08).floor %></td><!--単価(税込み)-->
+                        <td><%= (cart_item.product.price * 1.08).floor.to_s(:delimited, delimiter: ',') %></td><!--単価(税込み)-->
                         <td>
                             <%= form_for cart_item, url:"/carts/#{cart_item.id}" do |f| %><!--繰り返しのcart_itemを使って繰り返し取り出す-->
                             <%= f.text_field :quantity,:size => "5*30" %>
@@ -28,7 +28,7 @@
                             <% end %>
                         </td>
                         <td class="text-center align-middle"><!--小計-->
-                            <%= (cart_item.product.price * 1.08 *  cart_item.quantity).floor %>
+                            <%= (cart_item.product.price * 1.08 *  cart_item.quantity).floor.to_s(:delimited, delimiter: ',') %>
                         </td>
                         <td>
                             <%= link_to "削除する", "/carts/#{cart_item.id}", method: :delete,class: "btn btn-warning" %><!--繰り返しの<cart_itemを使って繰り返し取り出す-->
@@ -51,7 +51,7 @@
                     <tr>
                         <td class="warning">合計金額</td>
                         <td>
-                            <%= (array.sum * 1.08).floor %><!--合計金額の文字必要、上の繰り返しでとった値を合計して税金計算、小数点以下切り捨て-->
+                            <%= (array.sum * 1.08).floor.to_s(:delimited, delimiter: ',') %><!--合計金額の文字必要、上の繰り返しでとった値を合計して税金計算、小数点以下切り捨て-->
                         </td>
                     </tr>
                 </tbody>
