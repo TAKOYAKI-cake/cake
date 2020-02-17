@@ -52,36 +52,33 @@ class OrdersController < ApplicationController
     @order = @customer.orders.new(order_params)
     @carts = current_customer.cart_items
 
-    @address = params[:order][:address]
+    @address = Address.new(
+      customer_id: current_customer.id,
+      post_code: params[:order][:address][:post_code],
+      shipping_address: params[:order][:address][:shipping_address],
+      shipping_name: params[:order][:address][:shipping_name]
+    )
 
     if params[:select_shipping_address] == "1"
      @order.shipping_address = @customer.address
      @order.postcode = @customer.post_code
      @order.shipping_name = @customer.total_name
-   elsif
-     params[:select_shipping_address] == "2"
+   elsif params[:select_shipping_address] == "2"
      @order.shipping_address = params[:order][:shipping_address]
      @select = Address.find_by(shipping_address: params[:order][:shipping_address])
      @order.postcode = @select[:post_code]
      @order.shipping_name = @select[:shipping_name]
-   else
-     params[:select_shipping_address] == "3"
-     @order.shipping_address = @address[:shipping_address]
-     @order.postcode = @address[:post_code]
-     @order.shipping_name = @address[:shipping_name]
-
-     @address = current_customer.addresses.new
-     @address.shipping_address = @order.shipping_address
-     @address.post_code = @order.postcode
-     @address.shipping_name = @order.shipping_name
+   elsif params[:select_shipping_address] == "3"
+     @order.shipping_address = @address.shipping_address
+     @order.postcode = @address.post_code
+     @order.shipping_name = @address.shipping_name
      @address.save
-
+     render :new unless @address.valid?
    end
 
 
    @order_postage = 800
-   #binding.pry
-   render :new unless @order.valid?
+   # binding.pry
    end
 
   def show
@@ -106,10 +103,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:user_id, :total_amount, :order_status, :method_of_payment, :postcode, :shipping_address, :shipping_name, :postage, orderd_products_attributes: [:price])
-  end
-
-  def address_params
-    params.require(:address).permit(:customer_id, :post_code, :shipping_address, :shipping_name)
   end
 
   # def orderd_product_params

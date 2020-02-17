@@ -3,11 +3,19 @@
 		<h4>購入情報入力</h4>
 
 		<%= form_for(@order, url: confirm_new_order_path) do |f| %>
+		<% if @address.errors %>
+		<ul>
+        <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
 		<span style="font-weight: bold">支払入力</span><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><%= f.radio_button :method_of_payment, "card" %>クレジットカード</label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><%= f.radio_button :method_of_payment, "card", {:checked => true} %>クレジットカード</label><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><%= f.radio_button :method_of_payment, "bank" %>銀行振込</label><br>
 
 		<span style="font-weight: bold">お届け先</span><br>
+
 
 		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1" %>ご自身の住所</label><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒<%= current_customer.post_code.to_s.insert(3, "-") %> <%= current_customer.address %><br>
