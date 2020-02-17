@@ -3,7 +3,7 @@
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <font size="1"><%= link_to "=> パスワードをお忘れの方はこちら", new_password_path(resource_name),class:"col-xs-offset-4" %></font><br />
+  <font size="2"><%= link_to "=> パスワードをお忘れの方はこちら", new_password_path(resource_name),class:"col-xs-offset-4" %></font><br />
 <% end %>
 </div>
 

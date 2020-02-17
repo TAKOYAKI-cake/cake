@@ -1,4 +1,6 @@
 <div class="container">
+  <p><font color="red"><%= flash[:notice] %></font></p>
+  <font color="red"><%= alert %></font>
   <div class="row">
     <p class="col-xs-12 col-xs-offset-2">会員の方はこちらからログイン</p><!--赤文字-->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
