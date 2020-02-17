@@ -36,7 +36,7 @@
 				<% @sum = 0 %>
 				<% @orderd_products.each do |o_product| %>
 				<tr>
-					<% @sum += o_product.product.price * o_product.quantity %>
+					<% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
 					<% end %><br>
 					<th class="warning">商品合計</th>
 					<td><%= @sum %></td>
@@ -65,9 +65,9 @@
 			<tbody><% @orderd_products.each do |o_product| %>
 				<tr>
 					<td><%= o_product.product.name %></td>
-					<td><%= o_product.product.price %></td>
+					<td><%= (o_product.product.price * 1.08) %></td>
 					<td><%= o_product.quantity%></td>
-					<td><%= o_product.product.price * o_product.quantity %></td>
+					<td><%= (o_product.product.price *1.08) * o_product.quantity %></td>
 					<% end %>
 				</tr>
 			</tbody>
