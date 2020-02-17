@@ -32,7 +32,10 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-    # bindin.pry
+    # binding.pry
+    if @order.order_status == "入金確認"
+      @order.orderd_products.update(making_status: 1)
+    end
     redirect_to admin_order_path(@order.id)
   end
 
