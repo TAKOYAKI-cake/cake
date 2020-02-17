@@ -20,6 +20,7 @@ resources :orders do
 resources :customers, only: [:show, :edit, :update, :destroy]
 
   namespace :admin do
+    get '/orders/all' => 'orders#all', as: 'orders_all'
     resources :products, only: [:show, :index, :edit, :update, :new, :create]
     resources :genres, only: [:index, :create, :edit, :update]
   end
