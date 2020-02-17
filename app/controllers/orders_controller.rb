@@ -66,8 +66,13 @@ class OrdersController < ApplicationController
    elsif params[:select_shipping_address] == "2"
      @order.shipping_address = params[:order][:shipping_address]
      @select = Address.find_by(shipping_address: params[:order][:shipping_address])
-     @order.postcode = @select[:post_code]
-     @order.shipping_name = @select[:shipping_name]
+     if @select
+      @order.postcode = @select[:post_code]
+      @order.shipping_name = @select[:shipping_name]
+    else
+      flash[:notice] = "届け先を選択してください"
+      render :new
+     end
    elsif params[:select_shipping_address] == "3"
      @order.shipping_address = @address.shipping_address
      @order.postcode = @address.post_code
