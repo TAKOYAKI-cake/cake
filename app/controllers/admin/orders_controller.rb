@@ -24,6 +24,7 @@ class Admin::OrdersController < ApplicationController
 
     end
 
+
   end
 
   def show
@@ -40,7 +41,9 @@ class Admin::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :total_amount, :order_status, :method_of_payment, :postcode, :shipping_address, :shipping_name, :postage)
+
+      params.require(:order).permit(:customer_id, :total_amount, :order_status, :method_of_payment, :postcode, :shipping_address, :shipping_name, :postage)
+
   end
   def set_zone
     Time.zone='Tokyo'
