@@ -7,6 +7,7 @@ before_action :authenticate_customer!, only: [:index, :update, :destroy, :destro
 
   def update
     cart_item = CartItem.find(params[:id])
+
     cart_item.update(cart_params)
     redirect_to carts_path#カート内一覧
   end
@@ -29,19 +30,31 @@ before_action :authenticate_customer!, only: [:index, :update, :destroy, :destro
   end
 #カートに商品を入れる
   def create
+    @product = Product.find(params[:cart_item][:product_id] )
+
     if current_customer != nil
+      if @product.in_cart?(current_customer)
+         @cart_item = current_customer.cart_items.find_by(product_id: @product.id)
+         @cart_item.quantity += params[:cart_item][:quantity].to_i
+         @cart_item.save
+
+      else
   	   @cart = CartItem.new(cart_params)#新規投稿
        @cart.customer_id = current_customer.id
        @cart.save#保存
+
+     end
        redirect_to carts_path#カート内一覧
+
     else
      flash[:notice] = "ログインをして下さい"#ログインを促す
      redirect_to customer_session_path#カスタマーのsign_in画面へ
+
      end
   end
 
 private
     def cart_params
-        params.require(:cart_item).permit(:user_id, :product_id, :quantity)
+        params.require(:cart_item).permit(:customer_id, :product_id, :quantity)
     end
 end
