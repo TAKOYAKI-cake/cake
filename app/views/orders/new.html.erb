@@ -8,6 +8,7 @@
         <% @address.errors.full_messages.each do |message| %>
         <li><%= message %></li>
         <% end %>
+        <font color="red"><%= flash[:notice] %></font>
       </ul>
       <% end %>
 		<span style="font-weight: bold">支払入力</span><br>
@@ -17,7 +18,7 @@
 		<span style="font-weight: bold">お届け先</span><br>
 
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1" %>ご自身の住所</label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1", {:checked => true} %>ご自身の住所</label><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒<%= current_customer.post_code.to_s.insert(3, "-") %> <%= current_customer.address %><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.family_name %> <%= current_customer.last_name %><br>
 
