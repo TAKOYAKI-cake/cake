@@ -36,6 +36,7 @@ resources :customers, only: [:show, :edit, :update, :destroy]
     get '/orders/top'
    resources :orders, only: [:index, :show, :update]
    resources :customers, only: [:index, :show, :edit, :update]
+   resources :orderd_products, only: [:update]
 end
 
 end

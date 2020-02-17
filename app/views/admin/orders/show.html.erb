@@ -20,6 +20,7 @@
             <th>ステータス</th>
             <%= form_for @order, :url => {:controller => :orders, :action => :update} do |o| %>
             <td><%= o.select :order_status, Order.order_statuses.keys %></td>
+            <td><%= o.submit "更新" %></td>
             <% end %>
           </tr>
         </tbody>
@@ -43,7 +44,10 @@
           <th><%= (orderd_products.price * 1.08).floor %></th>
           <th><%= orderd_products.quantity %></th>
           <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor %></th>
-          <th><%= orderd_products.making_status %></th>
+          <%= form_for orderd_products, :url => {:controller => :orderd_products, :action => :update } do |item| %>
+          <th><%= item.select :making_status, OrderdProduct.making_statuses.keys %></th>
+          <th><%= item.submit "更新" %></th>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
