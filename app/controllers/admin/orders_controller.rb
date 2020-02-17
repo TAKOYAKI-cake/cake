@@ -9,15 +9,6 @@ class Admin::OrdersController < ApplicationController
   def index
     @customers = Customer.all
     @orders = Order.page(params[:page])
-    @total_quatity = []
-    @orders.each do |order|
-      sum = 0
-      order.orderd_products.each do |orderd_product|
-        sum += orderd_product.quantity
-      end
-      @total_quatity << sum
-    end
-    #binding.pry
   end
 
   def show

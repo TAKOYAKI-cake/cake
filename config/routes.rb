@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'orderd_products/update'
+  end
   devise_for :admins
   devise_for :customers
 

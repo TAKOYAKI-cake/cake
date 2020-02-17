@@ -18,7 +18,9 @@
           </tr>
           <tr>
             <th>ステータス</th>
-            <td><%= @order.order_status %></td>
+            <%= form_for @order, :url => {:controller => :orders, :action => :update} do |o| %>
+            <td><%= o.select :order_status, Order.order_statuses.keys %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
