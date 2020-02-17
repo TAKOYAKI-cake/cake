@@ -6,4 +6,8 @@ class Product < ApplicationRecord
 
   attachment :image
 
+  def in_cart?(customer)
+    cart_items.where(customer_id: customer.id).exists?
+  end
+
 end
