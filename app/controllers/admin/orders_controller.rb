@@ -8,7 +8,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def all
-    @orders_all = Order.page(params[:page])
+    @orders_all = Order.page(params[:page]).order(created_at: :desc)
   end
 
   def index
@@ -32,6 +32,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    # bindin.pry
     redirect_to admin_order_path(@order.id)
   end
 
