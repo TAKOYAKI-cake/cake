@@ -5,7 +5,12 @@
       <tbody>
         <tr>
           <th>購入者</th>
-          <td><%= @order.customer.family_name %>　<%= @order.customer.last_name %></td>
+          <td>
+            <%= link_to admin_customer_path(@order.customer) do %>
+            <%= @order.customer.family_name %>　<%= @order.customer.last_name %>
+            <% end %>
+          </td>
+
         </tr>
         <tr>
           <th>配送先</th>
@@ -56,8 +61,8 @@
   <div class="row">
     <table class="table">
       <tbody>
-          <% @sum = 0 %>
-          <% @orderd_products.each do |o_product| %>
+        <% @sum = 0 %>
+        <% @orderd_products.each do |o_product| %>
         <tr>
           <% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
           <% end %><br><th>商品合計</th>
