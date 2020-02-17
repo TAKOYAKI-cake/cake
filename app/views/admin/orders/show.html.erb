@@ -53,7 +53,7 @@
               <th><%= (orderd_products.price * 1.08).floor.to_s(:delimited, delimiter: ',') %></th>
               <th><%= orderd_products.quantity %></th>
               <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor.to_s(:delimited, delimiter: ',') %></th>
-              <%= form_for orderd_products, :url => {:controller => :orderd_products, :action => :update } do |item| %>
+              <%= form_for orderd_products, url:"/admin/orderd_products/#{orderd_products.id}" do |item| %>
               <th><%= item.select :making_status, OrderdProduct.making_statuses.keys %></th>
               <th><%= item.submit "更新",class: "btn btn-info" %></th>
               <% end %>
