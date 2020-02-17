@@ -16,9 +16,10 @@
 
 		<span style="font-weight: bold">お届け先</span><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1", {:checked => true}  %>ご自身の住所</label><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.post_code %><%= current_customer.address %><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.family_name %><%= current_customer.last_name %><br>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "1" %>ご自身の住所</label><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒<%= current_customer.post_code.to_s.insert(3, "-") %> <%= current_customer.address %><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= current_customer.family_name %> <%= current_customer.last_name %><br>
 
 		&nbsp;&nbsp;&nbsp;&nbsp;<label><%= radio_button_tag :select_shipping_address, "2" %>登録済住所から選択<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.select :shipping_address, @customer.addresses.collect { |p| [ p.name_address, p.shipping_address ] }, :prompt => "住所を選択" %></label><br>
@@ -26,7 +27,8 @@
 			<label>
 				&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag :select_shipping_address, "3" %>新しいお届け先<br>
 				<%= f.fields_for @address do |a| %>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;郵便番号　<%= a.text_field :post_code %><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;郵便番号　<%= a.text_field :post_code %>
+				ハイフンなし<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住所　　　<%= a.text_field :shipping_address,:size => "60*30" %><br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宛名　　　<%= a.text_field :shipping_name %>
 

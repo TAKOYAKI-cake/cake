@@ -11,7 +11,7 @@
             <%= link_to product_path(product.id) do %><!--画像〜値段クリックで詳細画面へ-->
               <%= attachment_image_tag product, :image,size: "220x170" %><br><!--商品画像-->
               	<%= product.name %><br>
-              ￥<%= (product.price * 1.08).floor %><br><!--商品税込み価格,小数点切り捨て-->
+              ￥<%= (product.price * 1.08).floor.to_s(:delimited, delimiter: ',') %><br><!--商品税込み価格,小数点切り捨て-->
             <% end %>
            </div>
           <% end %>

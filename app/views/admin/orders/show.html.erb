@@ -1,79 +1,91 @@
 <div class="container">
   <div class="row">
     <h3>注文詳細画面</h3>
-    <table class="table">
-      <tbody>
-        <tr>
-          <th>購入者</th>
-          <td><%= @order.customer.family_name %>　<%= @order.customer.last_name %></td>
-        </tr>
-        <tr>
-          <th>配送先</th>
-          <td><%= @order.shipping_address %><br>
-            <%= @order.shipping_name %></td>
-          </tr>
-          <tr>
-            <th>支払方法</th>
-            <td><%= @order.method_of_payment %></td>
-          </tr>
-          <tr>
-            <th>ステータス</th>
-            <%= form_for @order, :url => {:controller => :orders, :action => :update} do |o| %>
-            <td><%= o.select :order_status, Order.order_statuses.keys %></td>
-            <td><%= o.submit "更新" %></td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="row">
-      <table>
-        <thead>
-          <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>製作ステータス</th>
-          </tr>
-        </thead>
+    <div class="col-xs-4 col-xs-offset-1">
+      <table class="table table-noborder">
         <tbody>
-         <% @order.orderd_products.each do |orderd_products| %>
-         <tr>
-          <th><%= orderd_products.product.name %></th>
-          <th><%= (orderd_products.price * 1.08).floor %></th>
-          <th><%= orderd_products.quantity %></th>
-          <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor %></th>
-          <%= form_for orderd_products, :url => {:controller => :orderd_products, :action => :update } do |item| %>
-          <th><%= item.select :making_status, OrderdProduct.making_statuses.keys %></th>
-          <th><%= item.submit "更新" %></th>
-          <% end %>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="row">
-    <table class="table">
-      <tbody>
-          <% @sum = 0 %>
-          <% @orderd_products.each do |o_product| %>
-        <tr>
-          <% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
-          <% end %><br><th>商品合計</th>
-          <td><%= (@sum).floor %>円</td>
-        </tr>
-        <tr>
-          <th>送料</th>
-          <td><%= @order.postage %>円</td>
-        </tr>
-        <tr>
-          <th>請求金額合計</th>
-          <td><%= @order.total_amount %>円</td>
-        </tr>
+          <tr>
+            <th>購入者</th>
+            <td>
+              <%= link_to admin_customer_path(@order.customer) do %>
+              <%= @order.customer.family_name %>　<%= @order.customer.last_name %>
+              <% end %>
+            </td>
 
-      </tbody>
-    </table>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td>〒<%= @order.postcode %> <%= @order.shipping_address %><br>
+              <%= @order.shipping_name %></td>
+            </tr>
+            <tr>
+              <th>支払方法</th>
+              <td><%= @order.method_of_payment %></td>
+            </tr>
+            <tr>
+              <th>注文ステータス</th>
+              <%= form_for @order, :url => {:controller => :orders, :action => :update} do |o| %>
+              <td><%= o.select :order_status, Order.order_statuses.keys %>
+                <%= o.submit "更新",class: "btn btn-info"%></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-1">
+          <table class="table">
+            <thead>
+              <tr  class="warning">
+                <th>商品名</th>
+                <th>単価（税込）</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th>製作ステータス</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+             <% @order.orderd_products.each do |orderd_products| %>
+             <tr>
+              <th><%= orderd_products.product.name %></th>
+              <th><%= (orderd_products.price * 1.08).floor.to_s(:delimited, delimiter: ',') %></th>
+              <th><%= orderd_products.quantity %></th>
+              <th><%= ((orderd_products.price * 1.08) * orderd_products.quantity).floor.to_s(:delimited, delimiter: ',') %></th>
+              <%= form_for orderd_products, :url => {:controller => :orderd_products, :action => :update } do |item| %>
+              <th><%= item.select :making_status, OrderdProduct.making_statuses.keys %></th>
+              <th><%= item.submit "更新",class: "btn btn-info" %></th>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-xs-4">
+        <table class="table table-noborder">
+          <tbody>
+            <% @sum = 0 %>
+            <% @orderd_products.each do |o_product| %>
+            <tr>
+              <% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
+              <% end %><br><th>商品合計</th>
+              <td><%= (@sum).floor.to_s(:delimited, delimiter: ',') %>円</td>
+            </tr>
+            <tr>
+              <th>送料</th>
+              <td><%= @order.postage %>円</td>
+            </tr>
+            <tr>
+              <th>請求金額合計</th>
+              <th><%= @order.total_amount.to_s(:delimited, delimiter: ',') %>円</th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
