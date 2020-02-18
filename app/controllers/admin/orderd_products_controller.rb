@@ -6,7 +6,6 @@ class Admin::OrderdProductsController < ApplicationController
   	@order = @orderd_product.order
     if @orderd_product.making_status == "製作中"
       @order.update(order_status: 2)
-    redirect_to admin_order_path(@order.id)
     end
     if @order.orderd_products.all? {|a| a.making_status == "製作完了"}
       @order.update(order_status: 3)
