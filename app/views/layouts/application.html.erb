@@ -36,10 +36,8 @@
             <li><%= link_to "会員一覧" , admin_customers_path,class: "link" %></li>
             <li><%= link_to "注文履歴一覧" , admin_orders_all_path,class: "link" %></li>
             <li><%= link_to "ジャンル管理" , admin_genres_path,class: "link" %></li>
-            <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li>
+            <li><%= link_to destroy_admin_session_path, method: :delete,class: "link" do %>ログアウト</li><br>
             <% end %>
-          </ul>
-          <ul class="navbar-nav navbar-right">
             <li class="input-group">
               <input type="text" class="form-control hoge" placeholder="テキスト入力欄">
               <span class="input-group-btn">
