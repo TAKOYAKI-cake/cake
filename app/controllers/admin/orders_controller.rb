@@ -16,11 +16,11 @@ class Admin::OrdersController < ApplicationController
     @path = Rails.application.routes.recognize_path(request.referer)
 
     if @path[:action] == "top"
-      @orders = Order.page(params[:page]).where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+      @orders = Order.page(params[:page]).order(created_at: :desc).where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
 
     elsif @path[:action] == "show"
       @customer = Customer.find(@path[:id])
-      @orders = @customer.orders.page(params[:page])
+      @orders = @customer.orders.page(params[:page]).order(created_at: :desc)
     end
   end
 

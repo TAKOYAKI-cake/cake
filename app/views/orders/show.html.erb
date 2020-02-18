@@ -36,9 +36,10 @@
 					<% @sum = 0 %>
 					<% @orderd_products.each do |o_product| %>
 					<tr>
-						<% @sum += (o_product.product.price * 1.08) * o_product.quantity %>
+						<% @sum += ((o_product.product.price * 1.08) * o_product.quantity).floor %>
 						<% end %><br>
 						<th class="warning">商品合計</th>
+						<td><%= @sum.to_s(:delimited, delimiter: ',') %></td>
 					</tr>
 					<tr>
 						<th class="warning">ご請求金額</th>
