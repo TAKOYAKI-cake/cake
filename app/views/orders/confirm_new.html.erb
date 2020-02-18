@@ -10,16 +10,17 @@
 				<thead>
 					<tr class="warning">
 						<th>商品名</th>
-						<th>数量</th>
 						<th>単価(税込)</th>
+						<th>数量</th>
 						<th>小計</th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @carts.each do |cart| %>
 					<tr>
-						<td><%= attachment_image_tag cart.product, :image,size: "120x80" %></td>
-						<td><%= cart.product.name %></td>
+						<td><%= attachment_image_tag cart.product, :image,size: "120x80" %>
+						<%= cart.product.name %></td>
+						<td><%= (cart.product.price * 1.08).floor %></td>
 						<td><%= cart.quantity %></td>
 						<td><%= ((cart.product.price * 1.08) * cart.quantity).floor.to_s(:delimited, delimiter: ',') %></td>
 					</tr>
