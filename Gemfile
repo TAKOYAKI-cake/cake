@@ -69,5 +69,9 @@ gem "refile-mini_magick"
 gem 'kaminari'
 gem 'payjp'
 
-
 gem 'pry-byebug'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
